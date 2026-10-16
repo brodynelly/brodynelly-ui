@@ -1,4 +1,4 @@
-import { cdp, userEvent } from '@vitest/browser/context';
+import { cdp, userEvent } from 'vitest/browser';
 import { tick } from 'svelte';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render } from 'vitest-browser-svelte';
@@ -8,7 +8,7 @@ const displacement = (button) => parseFloat(button.style.getPropertyValue('--cho
 const scale = (button) => Number(button.style.getPropertyValue('--choice-scale'));
 
 afterEach(async () => {
-	cleanup();
+	await cleanup();
 	await cdp().send('Emulation.setEmulatedMedia', { features: [] });
 });
 
@@ -29,7 +29,7 @@ describe('WindowChoice', () => {
 				vi.fn((event) => seen.push({ type: event.type, target: event.currentTarget }))
 			])
 		);
-		const screen = render(WindowChoice, { label: 'Preview', ...handlers });
+		const screen = await render(WindowChoice, { label: 'Preview', ...handlers });
 		const button = screen.getByRole('button', { name: 'Select preview' }).element();
 		for (const type of events) {
 			button.dispatchEvent(
@@ -55,7 +55,7 @@ describe('WindowChoice', () => {
 		const onclick = vi.fn();
 		const onkeydown = vi.fn();
 		const onkeyup = vi.fn();
-		const screen = render(WindowChoice, { label: name, onclick, onkeydown, onkeyup });
+		const screen = await render(WindowChoice, { label: name, onclick, onkeydown, onkeyup });
 		const button = screen.getByRole('button').element();
 		button.focus();
 		try {
@@ -75,7 +75,7 @@ describe('WindowChoice', () => {
 
 	it('clears a keyboard press on blur and honors prevented keyboard input', async () => {
 		const onblur = vi.fn();
-		const screen = render(WindowChoice, { onblur });
+		const screen = await render(WindowChoice, { onblur });
 		const button = screen.getByRole('button').element();
 		button.focus();
 		try {
@@ -100,7 +100,7 @@ describe('WindowChoice', () => {
 			features: [{ name: 'prefers-reduced-motion', value: 'reduce' }]
 		});
 		const onclick = vi.fn();
-		const screen = render(WindowChoice, { disabled: true, onclick });
+		const screen = await render(WindowChoice, { disabled: true, onclick });
 		const button = screen.getByRole('button').element();
 		button.click();
 		expect(onclick).not.toHaveBeenCalled();

@@ -400,7 +400,7 @@
 	.menu-trigger {
 		--menu-action: #0050a4;
 		align-items: center;
-		background: var(--fills-tertiary, rgb(118 118 128 / 12%));
+		background: var(--apple-control-fill, var(--fills-tertiary, rgb(118 118 128 / 12%)));
 		border: 1px solid transparent;
 		border-radius: 999px;
 		color: var(--apple-action-text, var(--menu-action));
@@ -418,7 +418,7 @@
 	}
 
 	.menu-trigger:focus-visible {
-		outline: 3px solid var(--colors-accent, #007aff);
+		outline: 3px solid var(--apple-focus-ring, var(--menu-action));
 		outline-offset: 3px;
 	}
 
@@ -435,6 +435,7 @@
 		--menu-control-edge: #59595f;
 		--menu-action-text: #0050a4;
 		--apple-action-text: var(--apple-menu-action-text, var(--menu-action-text));
+		--apple-focus-ring: var(--apple-menu-focus-ring, var(--apple-action-text));
 		--apple-label: var(--apple-menu-label, var(--menu-label));
 		--apple-secondary-label: var(--apple-menu-secondary, var(--menu-secondary));
 		--apple-control-fill: var(--menu-control-fill);
@@ -488,7 +489,7 @@
 	}
 
 	.menu-panel:focus-visible {
-		outline: 3px solid var(--colors-accent, #007aff);
+		outline: 3px solid var(--apple-focus-ring);
 		outline-offset: 2px;
 	}
 

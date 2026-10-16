@@ -16,6 +16,8 @@
 	--apple-window-sidebar-inactive: oklch(94.94% 0.0013 286);
 	--apple-window-radius: 34px;
 	--apple-accent: #0088ff;
+	/* Focus is qualified against its surface, independently of the presentation accent. */
+	--apple-focus-ring: #0050a4;
 	--apple-separator: #e6e6e6;
 	--apple-font-display: 'SF Pro', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	--apple-font-body: 'SF Pro', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -123,6 +125,7 @@
 
 @media (prefers-color-scheme: dark) {
 	:root {
+		--apple-focus-ring: #66b3ff;
 		/* Materials: */
 		--materials-background-blend-mode: overlay;
 		--materials-thick: rgb(36, 36, 36, 0.9);
@@ -229,7 +232,7 @@
 
 *:focus-visible,
 :root .liquid-glass:focus-visible {
-	outline: 3px solid var(--colors-accent, #0088ff);
+	outline: 3px solid var(--apple-focus-ring, var(--colors-accent, #0088ff));
 	outline-offset: 4px;
 }
 
@@ -682,7 +685,7 @@ p {
 
 /* Accessibility preferences apply to the existing material components, too. */
 label:has(> .hidden-input:focus-visible) {
-	outline: 3px solid var(--colors-accent, #0088ff);
+	outline: 3px solid var(--apple-focus-ring, var(--colors-accent, #0088ff));
 	outline-offset: 4px;
 }
 

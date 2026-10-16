@@ -1,0 +1,177 @@
+{
+	"schema_version": "opencode-luuna.repository-profile/v1",
+	"repository_id": "brodynelly-ui",
+	"title": "Brodynelly UI — editable Svelte 5 source and copy-to-source CLI",
+	"kind": "svelte-source-first-component-library",
+	"working_directory": ".",
+	"sources": [
+		"AGENTS.md",
+		"package.json",
+		"vite.config.js",
+		"src/lib/index.js",
+		"scripts/build-registry.mjs",
+		"bin/brodynelly-ui.mjs"
+	],
+	"public_entry": "src/lib/index.js",
+	"public_component_count": 83,
+	"shared_styles": "src/lib/styles.css",
+	"site_entry": "src/routes/+page.svelte",
+	"showcase": "src/routes/showcase/+page.svelte",
+	"installer_entry": "bin/brodynelly-ui.mjs",
+	"registry_generator": "scripts/build-registry.mjs",
+	"generated_paths": ["registry", ".svelte-kit", "dist", "build", ".checks", "coverage"],
+	"baseline": {
+		"status": "unverified",
+		"note": "A proposed profile is not run evidence. Inspect the current tests and run the approved required recipes on this worktree and candidate before claiming a baseline. Results from another worktree/session are not transferable proof."
+	},
+	"conventions": [
+		"This is editable Svelte 5 component source, the showcase, a generated registry and our own copy-to-source CLI; not a runtime component npm package or official shadcn registry.",
+		"Preserve the 83 explicit public components in src/lib/index.js and separately imported src/lib/styles.css; update the declared contract deliberately for approved API changes.",
+		"Keep zero runtime dependencies and zero peer dependencies in the root package. Development dependencies do not imply a consumer runtime package.",
+		"Inspect existing legacy-compatible Svelte syntax; do not silently migrate the whole library to runes or TypeScript.",
+		"Preserve classic and Version26 families unless an approved migration changes them; use shared library tokens rather than showcase-only fixes.",
+		"Never hand-edit registry payloads. Change source/generator as scoped, run registry:build, then registry:check and applicable registry/installer tests.",
+		"Open each task worktree at its own root; explicitly scope npm ci and npm run sync before project checks. Do not borrow another worktree's dependencies or generated state.",
+		"No root install/build lifecycle hooks, package identity/version changes or publishing workflows as part of setup; publication and pushing require separate authorization."
+	],
+	"recipes": [
+		{
+			"id": "dependencies",
+			"executable": "npm",
+			"arguments": ["ci"],
+			"working_directory": ".",
+			"timeout_ms": 300000,
+			"capabilities": [
+				"node>=20.19",
+				"npm",
+				"approved-dependency-install",
+				"registry-network-or-cache"
+			],
+			"expected_artifacts": ["captured-command-log", "worktree-node_modules"],
+			"note": "Per-worktree prerequisite only when explicitly scoped; inspect package/lock and install side effects. Not blanket script approval or a test pass."
+		},
+		{
+			"id": "sync",
+			"executable": "npm",
+			"arguments": ["run", "sync"],
+			"working_directory": ".",
+			"timeout_ms": 300000,
+			"capabilities": ["node", "npm", "installed-project-dependencies"],
+			"expected_artifacts": ["captured-command-log", ".svelte-kit"],
+			"note": "Explicit SvelteKit synchronization in this worktree, not an install lifecycle hook or type-check result."
+		},
+		{
+			"id": "dev",
+			"executable": "npm",
+			"arguments": ["run", "dev"],
+			"working_directory": ".",
+			"timeout_ms": 60000,
+			"capabilities": ["node", "npm", "installed-project-dependencies", "local-server"],
+			"expected_artifacts": ["captured-command-log"],
+			"note": "Optional development server; long-running, not a pass/fail baseline. Stop only your owned process."
+		},
+		{
+			"id": "preview",
+			"executable": "npm",
+			"arguments": ["run", "preview"],
+			"working_directory": ".",
+			"timeout_ms": 60000,
+			"capabilities": [
+				"node",
+				"npm",
+				"installed-project-dependencies",
+				"built-showcase",
+				"local-server"
+			],
+			"expected_artifacts": ["captured-command-log"],
+			"note": "Optional preview after site:build; not regression or consumer proof."
+		},
+		{
+			"id": "site:build",
+			"executable": "npm",
+			"arguments": ["run", "site:build"],
+			"working_directory": ".",
+			"timeout_ms": 300000,
+			"capabilities": ["node", "npm", "installed-project-dependencies", "synchronized-worktree"],
+			"expected_artifacts": ["captured-command-log", ".svelte-kit"],
+			"note": "Builds the showcase with Vite; writes generated output, not a component package build or installer verification."
+		},
+		{
+			"id": "registry:build",
+			"executable": "npm",
+			"arguments": ["run", "registry:build"],
+			"working_directory": ".",
+			"timeout_ms": 300000,
+			"capabilities": ["node", "npm", "installed-project-dependencies"],
+			"expected_artifacts": ["captured-command-log", "registry"],
+			"note": "Regenerates deterministic copy-to-source payloads; a mutating recipe, never a hand-edit or automatic approval."
+		},
+		{
+			"id": "registry:check",
+			"executable": "npm",
+			"arguments": ["run", "registry:check"],
+			"working_directory": ".",
+			"timeout_ms": 300000,
+			"capabilities": ["node", "npm", "installed-project-dependencies"],
+			"expected_artifacts": ["captured-command-log"],
+			"note": "Checks generated registry freshness against the exact source candidate."
+		},
+		{
+			"id": "test",
+			"executable": "npm",
+			"arguments": ["test"],
+			"working_directory": ".",
+			"timeout_ms": 300000,
+			"capabilities": [
+				"node",
+				"npm",
+				"installed-project-dependencies",
+				"synchronized-worktree",
+				"playwright-chromium"
+			],
+			"environment_notes": {
+				"PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH": "Optional caller-supplied installed Chromium executable; omit to use Playwright's available Chromium. This note is not an environment assignment."
+			},
+			"expected_artifacts": ["captured-command-log", "executed-test-count"],
+			"note": "Vitest run executes browser components and Node tests once, including standalone real-pointer checks outside the browser iframe. Chromium does not prove WebKit/native compatibility. No browser install is implied."
+		},
+		{
+			"id": "test:registry",
+			"executable": "npm",
+			"arguments": ["run", "test:registry"],
+			"working_directory": ".",
+			"timeout_ms": 300000,
+			"capabilities": ["node", "npm", "installed-project-dependencies"],
+			"expected_artifacts": ["captured-command-log", "executed-test-count"],
+			"note": "Runs the registry Node tests; inspect assertions/counts for the approved contract."
+		},
+		{
+			"id": "test:installer",
+			"executable": "npm",
+			"arguments": ["run", "test:installer"],
+			"working_directory": ".",
+			"timeout_ms": 300000,
+			"capabilities": ["node", "npm", "installed-project-dependencies"],
+			"expected_artifacts": ["captured-command-log", "executed-test-count"],
+			"note": "Runs copy-to-source installer Node tests. Fixtures may write temporary projects; inspect actual scope before execution."
+		},
+		{
+			"id": "lint",
+			"executable": "npm",
+			"arguments": ["run", "lint"],
+			"working_directory": ".",
+			"timeout_ms": 300000,
+			"capabilities": ["node", "npm", "installed-project-dependencies"],
+			"expected_artifacts": ["captured-command-log"],
+			"note": "Prettier check then ESLint; inspect current scripts. Does not establish behavior or coverage."
+		}
+	],
+	"approval_notes": [
+		"Recipes are proposals, not automatic execution grants or evidence. Confirm required gates and exact script contents in each plan; never save blanket script permissions.",
+		"Approve dependency/browser installation, baseline repairs, public API changes, commits and publication explicitly. Do not create an invented base or stage existing user work.",
+		"Use PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH only as a caller-provided environment override; no machine path belongs in this profile.",
+		"There is no configured svelte-check or coverage gate; do not invent passing type-check/coverage results.",
+		"OpenCode configuration checks are static only: node --test .opencode/checks/*.test.mjs. They are not product baseline, native discovery, live permissions or MCP generation proof.",
+		"Optional Luuna/Apple/OpenDesign resources are not bundled runtime dependencies. A missing resource blocks only dependent work, not ordinary CLI/build checks."
+	]
+}

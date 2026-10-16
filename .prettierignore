@@ -4,5 +4,7 @@ build/
 dist/
 /registry/
 .checks/
+/.opencode/runs/
+/.vitest-attachments/
 package-lock.json
 coverage/

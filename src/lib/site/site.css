@@ -1,0 +1,357 @@
+/* Private documentation styles. Do not apply these to the component showcase. */
+.source-site {
+	--site-surface: #fff;
+	--site-well: #f2f5f8;
+	--site-ink: #152331;
+	--site-muted: #455668;
+	--site-edge: #66788a;
+	--site-link: #0058a8;
+	min-height: 100svh;
+	background: var(--site-surface);
+	color: var(--site-ink);
+	font:
+		400 1rem/1.6 system-ui,
+		sans-serif;
+	font-optical-sizing: auto;
+	overflow-wrap: anywhere;
+}
+
+.source-site,
+.source-site * {
+	box-sizing: border-box;
+	-webkit-user-select: text;
+	user-select: text;
+	-webkit-text-size-adjust: auto;
+	text-size-adjust: auto;
+}
+
+.source-site :is(h1, h2, h3, p, pre, ul, ol, dl, dd) {
+	margin: 0;
+}
+
+.source-site :is(a, button, input, textarea, summary, [tabindex]):focus-visible {
+	outline: 3px solid var(--site-link);
+	outline-offset: 4px;
+}
+
+.source-site a {
+	color: var(--site-link);
+	text-decoration: underline;
+	text-decoration-thickness: 0.08em;
+	text-underline-offset: 0.2em;
+}
+
+.source-site a:hover {
+	opacity: 1;
+	text-decoration-thickness: 0.15em;
+}
+
+.source-site :is(button, input, textarea) {
+	font: inherit;
+	color: inherit;
+}
+
+.source-site :is(code, pre, textarea) {
+	font-family: ui-monospace, Consolas, monospace;
+	font-size: 0.9em;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+	word-break: normal;
+	text-overflow: clip;
+}
+
+.source-site :is(.site-header, .site-content, .site-footer) {
+	width: min(calc(100% - 3rem), 72rem);
+	margin-inline: auto;
+}
+
+.source-site .site-header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem 2rem;
+	padding-block: 1.25rem;
+}
+
+.source-site .site-brand {
+	color: var(--site-ink);
+	font-size: 1.15rem;
+	font-weight: 700;
+	letter-spacing: -0.02em;
+}
+
+.source-site nav {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.25rem 1.5rem;
+}
+
+.source-site nav a,
+.source-site .site-brand {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3em;
+	min-height: 2.75rem;
+}
+
+.source-site [aria-current='page'] {
+	color: var(--site-ink);
+	font-weight: 600;
+}
+
+.source-site .site-content {
+	padding-block: clamp(2.5rem, 7vw, 5.5rem) 4rem;
+}
+
+.source-site .hero {
+	max-width: 52rem;
+}
+
+.source-site h1 {
+	max-width: 19ch;
+	font-size: clamp(2.3rem, 6vw, 4rem);
+	font-weight: 700;
+	line-height: 1.08;
+	letter-spacing: -0.035em;
+	text-wrap: balance;
+}
+
+.source-site .lead {
+	max-width: 54ch;
+	margin-block: 1.5rem;
+	font-size: 1.2rem;
+	line-height: 1.55;
+}
+
+.source-site .muted {
+	color: var(--site-muted);
+}
+
+.source-site h2 {
+	font-size: 1.7rem;
+	font-weight: 650;
+	line-height: 1.25;
+	letter-spacing: -0.025em;
+}
+
+.source-site h3 {
+	font-size: 1.1rem;
+	font-weight: 650;
+	line-height: 1.4;
+}
+
+.source-site .site-section {
+	margin-top: 4rem;
+	scroll-margin-top: 1.5rem;
+}
+
+.source-site .site-section > :is(p, ol, ul, dl) {
+	margin-top: 1rem;
+}
+
+.source-site .site-section > :is(p, ol, ul, dl):not(.component-list) {
+	max-width: 68ch;
+}
+
+.source-site .command-block,
+.source-site .source-example {
+	margin-block: 1.5rem;
+	padding: 1.25rem;
+	border: 1px solid var(--site-edge);
+	border-radius: 0.75rem;
+	background: var(--site-well);
+}
+
+.source-site .command-block > p {
+	margin-bottom: 0.75rem;
+	font-weight: 600;
+}
+
+.source-site .command-block > code {
+	display: block;
+}
+
+.source-site .site-copy {
+	margin-top: 1rem;
+}
+
+.source-site .site-button {
+	min-height: 2.75rem;
+	max-width: 100%;
+	padding: 0.5rem 1rem;
+	border: 1px solid var(--site-edge);
+	border-radius: 0.4rem;
+	background: var(--site-surface);
+	color: var(--site-link);
+	font-weight: 600;
+	line-height: 1.4;
+	cursor: pointer;
+	touch-action: manipulation;
+}
+
+.source-site .site-button:hover {
+	background: var(--site-well);
+}
+
+.source-site .site-button:active {
+	box-shadow: inset 0 0 0 1px currentColor;
+}
+
+.source-site .site-button[aria-disabled='true'] {
+	cursor: progress;
+}
+
+.source-site :is(button, input):disabled {
+	cursor: not-allowed;
+}
+
+.source-site .copy-status:not(:empty) {
+	margin-top: 0.75rem;
+}
+
+.source-site .manual-copy {
+	margin-top: 1rem;
+}
+
+.source-site label {
+	display: block;
+	font-weight: 600;
+	cursor: default;
+}
+
+.source-site :is(input, textarea) {
+	min-width: 0;
+	width: 100%;
+	min-height: 2.75rem;
+	padding: 0.65rem 0.75rem;
+	border: 1px solid var(--site-edge);
+	border-radius: 0.4rem;
+	background: var(--site-surface);
+}
+
+.source-site textarea {
+	display: block;
+	margin-top: 0.5rem;
+	resize: vertical;
+	line-height: 1.6;
+}
+
+.source-site .search-controls {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: end;
+	gap: 0.75rem;
+	max-width: 42rem;
+	margin-block: 1.5rem 0.75rem;
+}
+
+.source-site .search-field {
+	flex: 1 1 16rem;
+	min-width: 0;
+}
+
+.source-site .search-field input {
+	margin-top: 0.5rem;
+}
+
+.source-site .component-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 28rem), 1fr));
+	align-items: start;
+	gap: 0 2rem;
+	padding: 0;
+	list-style: none;
+	margin-top: 1.5rem;
+}
+
+.source-site .component-list > li {
+	min-width: 0;
+	border-top: 1px solid var(--site-edge);
+}
+
+.source-site summary {
+	min-height: 2.75rem;
+	padding-block: 1rem;
+	cursor: pointer;
+}
+
+.source-site summary strong {
+	margin-right: 0.5em;
+}
+
+.source-site summary code {
+	color: var(--site-muted);
+}
+
+.source-site .component-source {
+	padding-bottom: 1.5rem;
+}
+
+.source-site dt {
+	font-weight: 600;
+}
+
+.source-site dd + dt {
+	margin-top: 0.75rem;
+}
+
+.source-site .component-source > code {
+	display: block;
+	margin-top: 1rem;
+}
+
+.source-site .safety-list {
+	display: grid;
+	gap: 0.75rem;
+}
+
+.source-site .prose {
+	max-width: 48rem;
+}
+
+.source-site li + li:not(.component-list > li) {
+	margin-top: 0.65rem;
+}
+
+.source-site .site-footer {
+	padding-block: 2rem 3rem;
+	border-top: 1px solid var(--site-edge);
+	color: var(--site-muted);
+}
+
+.source-site .site-footer p {
+	margin-top: 1rem;
+}
+
+.source-site .skip-link {
+	position: absolute;
+	left: 1.5rem;
+	top: 0.5rem;
+	z-index: 1;
+	padding: 0.75rem;
+	background: var(--site-surface);
+	transform: translateY(-200%);
+}
+
+.source-site .skip-link:focus {
+	transform: none;
+}
+
+@media (prefers-color-scheme: dark) {
+	.source-site {
+		--site-surface: #111b25;
+		--site-well: #1a2836;
+		--site-ink: #f4f7fa;
+		--site-muted: #b8c7d6;
+		--site-edge: #96a9bc;
+		--site-link: #9acbff;
+	}
+}
+
+@media (prefers-contrast: more) {
+	.source-site {
+		--site-edge: var(--site-ink);
+	}
+}

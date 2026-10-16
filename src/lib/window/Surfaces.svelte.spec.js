@@ -1,4 +1,4 @@
-import { cdp, page, userEvent } from '@vitest/browser/context';
+import { cdp, page, userEvent } from 'vitest/browser';
 import { afterEach, describe, expect, it } from 'vitest';
 import { cleanup, render } from 'vitest-browser-svelte';
 import Fixture from './Surfaces.test.svelte';
@@ -47,8 +47,22 @@ function textContrast(element, pseudo) {
 	return contrast(paint(getComputedStyle(element, pseudo).color, surface), surface);
 }
 
+async function keyboardFocus(element) {
+	element.focus();
+	await userEvent.keyboard('{Shift>}{Tab}{/Shift}{Tab}');
+	expect(document.activeElement).toBe(element);
+	expect(element.matches(':focus-visible')).toBe(true);
+}
+
+function focusContrast(ring, surface) {
+	const style = getComputedStyle(ring);
+	expect(parseFloat(style.outlineWidth)).toBeGreaterThanOrEqual(2);
+	expect(style.outlineStyle).toBe('solid');
+	return contrast(paint(style.outlineColor, surface), surface);
+}
+
 afterEach(async () => {
-	cleanup();
+	await cleanup();
 	await cdp().send('Emulation.setEmulatedMedia', { features: [] });
 });
 
@@ -65,7 +79,7 @@ describe('library surface roles and normal-state contrast', () => {
 							{ name: 'prefers-reduced-transparency', value: solid ? 'reduce' : 'no-preference' }
 						]
 					});
-					const screen = render(Fixture, { kind });
+					const screen = await render(Fixture, { kind });
 					for (const name of ['Default search', 'Surface search']) {
 						const input = page.getByRole('searchbox', { name }).element();
 						expect(textContrast(input)).toBeGreaterThanOrEqual(4.5);
@@ -159,6 +173,115 @@ describe('library surface roles and normal-state contrast', () => {
 							expect(input.getBoundingClientRect().height).toBe(44);
 						}
 					}
+				}
+			);
+		}
+	}
+});
+
+describe('keyboard focus belongs to the actual library surface', () => {
+	for (const kind of ['window', 'split']) {
+		for (const mode of ['light', 'dark']) {
+			it.each(['normal', 'solid', 'contrast'])(
+				`${kind} pairs keyboard focus and overlay surfaces in ${mode} (%s)`,
+				async (preference) => {
+					await page.viewport(1000, 1000);
+					await cdp().send('Emulation.setEmulatedMedia', {
+						features: [
+							{ name: 'prefers-color-scheme', value: mode },
+							{ name: 'prefers-reduced-motion', value: 'reduce' },
+							{
+								name: 'prefers-reduced-transparency',
+								value: preference === 'solid' ? 'reduce' : 'no-preference'
+							},
+							{
+								name: 'prefers-contrast',
+								value: preference === 'contrast' ? 'more' : 'no-preference'
+							}
+						]
+					});
+					const screen = await render(Fixture, { kind });
+					const input = page.getByRole('searchbox', { name: 'Surface search' }).element();
+					const sidebar = input.closest('.apple-window__sidebar, .apple-split-view__sidebar');
+					const surface = background(sidebar);
+					await keyboardFocus(input);
+					const ring = input.closest('.search-control');
+					const ratio = focusContrast(ring, surface);
+					expect(ratio).toBeGreaterThanOrEqual(3);
+					console.info(
+						'focus-measurement',
+						JSON.stringify({
+							kind,
+							mode,
+							preference,
+							ring: getComputedStyle(ring).outlineColor,
+							sidebar: getComputedStyle(sidebar).backgroundColor,
+							sidebarRgb: surface,
+							ratio,
+							keyboardFocused: input.matches(':focus-visible')
+						})
+					);
+					const clear = page.getByRole('button', { name: 'Clear Surface search' }).element();
+					await userEvent.keyboard('{Tab}');
+					expect(document.activeElement).toBe(clear);
+					expect(clear.matches(':focus-visible')).toBe(true);
+					expect(focusContrast(clear, background(ring))).toBeGreaterThanOrEqual(3);
+
+					for (const [role, name] of [
+						['switch', 'Sidebar switch'],
+						['slider', 'Sidebar slider'],
+						['button', 'Decrease Sidebar count'],
+						['button', 'Increase Sidebar count'],
+						['button', 'Sidebar actions']
+					]) {
+						const control = page.getByRole(role, { name, exact: true }).element();
+						await keyboardFocus(control);
+						const indicator = role === 'switch' ? control.nextElementSibling : control;
+						await expect
+							.poll(() => parseFloat(getComputedStyle(indicator).outlineWidth))
+							.toBeGreaterThanOrEqual(2);
+						expect(focusContrast(indicator, surface)).toBeGreaterThanOrEqual(3);
+					}
+					await userEvent.keyboard('{Enter}');
+					const menu = page.getByRole('menu', { name: 'Sidebar actions' }).element();
+					const item = page.getByRole('menuitem', { name: 'Sidebar item' }).element();
+					await expect.element(item).toHaveFocus();
+					expect(item.matches(':focus-visible')).toBe(true);
+					for (const beneath of [
+						[0, 0, 0],
+						[255, 255, 255]
+					]) {
+						const menuSurface = paint(getComputedStyle(menu).backgroundColor, beneath);
+						const itemSurface = paint(getComputedStyle(item).backgroundColor, menuSurface);
+						expect(focusContrast(item, menuSurface)).toBeGreaterThanOrEqual(3);
+						expect(focusContrast(item, itemSurface)).toBeGreaterThanOrEqual(3);
+					}
+					await userEvent.keyboard('{Escape}');
+
+					if (kind === 'split') {
+						const separator = page.getByRole('separator').element();
+						await keyboardFocus(separator);
+						for (const pane of screen.container.querySelectorAll(
+							'.apple-split-view__sidebar, .apple-split-view__content'
+						))
+							expect(focusContrast(separator, background(pane))).toBeGreaterThanOrEqual(3);
+					}
+					await keyboardFocus(page.getByRole('button', { name: 'Open surface sheet' }).element());
+					await userEvent.keyboard('{Enter}');
+					const dialog = page.getByRole('dialog', { name: 'Surface sheet' }).element();
+					await expect.element(dialog).toBeVisible();
+					const overlayInput = page.getByRole('searchbox', { name: 'Overlay search' }).element();
+					await keyboardFocus(overlayInput);
+					expect(
+						focusContrast(overlayInput.closest('.search-control'), background(dialog))
+					).toBeGreaterThanOrEqual(3);
+					const close = page.getByRole('button', { name: 'Close sheet' }).element();
+					await userEvent.keyboard('{Shift>}{Tab}{/Shift}');
+					expect(document.activeElement).toBe(close);
+					expect(close.matches(':focus-visible')).toBe(true);
+					expect(focusContrast(close, background(dialog))).toBeGreaterThanOrEqual(3);
+					await userEvent.keyboard('{Escape}');
+					await expect.poll(() => dialog.open).toBe(false);
 				}
 			);
 		}

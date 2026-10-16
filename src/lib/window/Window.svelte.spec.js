@@ -1,4 +1,4 @@
-import { page, userEvent } from '@vitest/browser/context';
+import { page, userEvent } from 'vitest/browser';
 import { createRawSnippet } from 'svelte';
 import { describe, expect, it, vi } from 'vitest';
 import { render } from 'vitest-browser-svelte';
@@ -7,8 +7,8 @@ import WindowControls from './WindowControls.svelte';
 import WindowResizeControl from './WindowResizeControl.svelte';
 
 describe('Window', () => {
-	it('renders the neutral 720 × 400 source surface without interactive chrome', () => {
-		const { container } = render(Window, { style: 'width: 720px', 'data-testid': 'window' });
+	it('renders the neutral 720 × 400 source surface without interactive chrome', async () => {
+		const { container } = await render(Window, { style: 'width: 720px', 'data-testid': 'window' });
 		const surface = container.querySelector('.apple-window');
 		const styles = getComputedStyle(surface);
 
@@ -27,7 +27,7 @@ describe('Window', () => {
 	it('preserves the 4:5 split, both snippets, and reactive active/selected appearances', async () => {
 		const sidebar = createRawSnippet(() => ({ render: () => '<span>Sidebar content</span>' }));
 		const children = createRawSnippet(() => ({ render: () => '<button>Content action</button>' }));
-		const { container, rerender } = render(Window, {
+		const { container, rerender } = await render(Window, {
 			split: true,
 			sidebar,
 			children,
@@ -51,8 +51,8 @@ describe('Window', () => {
 		expect(surface.querySelectorAll('button')).toHaveLength(1);
 	});
 
-	it('forwards class, style, and attributes without requiring shared styles', () => {
-		const { container } = render(Window, {
+	it('forwards class, style, and attributes without requiring shared styles', async () => {
+		const { container } = await render(Window, {
 			class: 'custom-window',
 			style: '--apple-window-radius: 12px; --apple-window-surface: #f00; width: 360px',
 			id: 'custom-window',
@@ -70,7 +70,7 @@ describe('Window', () => {
 describe('WindowControls', () => {
 	it('renders one 44px pill with three monochrome source dots and a controlled callback', async () => {
 		const onclick = vi.fn();
-		const { container, rerender } = render(WindowControls, {
+		const { container, rerender } = await render(WindowControls, {
 			onclick,
 			class: 'custom-control',
 			style:
@@ -103,7 +103,7 @@ describe('WindowControls', () => {
 
 	it('supports custom labels, keyboard activation, and native disabled behavior', async () => {
 		const onclick = vi.fn();
-		const { rerender } = render(WindowControls, { label: 'Use active appearance', onclick });
+		const { rerender } = await render(WindowControls, { label: 'Use active appearance', onclick });
 		const button = page.getByRole('button', { name: 'Use active appearance' });
 		button.element().focus();
 		await userEvent.keyboard('{Enter}');
@@ -120,7 +120,7 @@ describe('WindowControls', () => {
 describe('WindowResizeControl', () => {
 	it('keeps the source 18px nested-corner glyph and forwards selection callbacks', async () => {
 		const onclick = vi.fn();
-		const { container, rerender } = render(WindowResizeControl, { onclick });
+		const { container, rerender } = await render(WindowResizeControl, { onclick });
 		const button = page.getByRole('button', { name: 'Floating' });
 		const glyph = container.querySelector('.apple-window-resize-glyph');
 
@@ -141,7 +141,7 @@ describe('WindowResizeControl', () => {
 
 	it('does not activate a disabled resize selector', async () => {
 		const onclick = vi.fn();
-		render(WindowResizeControl, { disabled: true, label: 'Resize appearance', onclick });
+		await render(WindowResizeControl, { disabled: true, label: 'Resize appearance', onclick });
 		const button = page.getByRole('button', { name: 'Resize appearance' });
 
 		await expect.element(button).toBeDisabled();

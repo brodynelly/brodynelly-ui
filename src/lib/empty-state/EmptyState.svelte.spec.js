@@ -1,17 +1,17 @@
-import { cdp } from '@vitest/browser/context';
+import { cdp } from 'vitest/browser';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render } from 'vitest-browser-svelte';
 import EmptyState from './EmptyState.svelte';
 import EmptyStateFixture from './EmptyState.test.svelte';
 
 afterEach(async () => {
-	cleanup();
+	await cleanup();
 	await cdp().send('Emulation.setEmulatedMedia', { features: [] });
 });
 
 describe('EmptyState', () => {
 	it('renders a named text-only section without inventing an icon or empty content', async () => {
-		const screen = render(EmptyState, { title: 'No results' });
+		const screen = await render(EmptyState, { title: 'No results' });
 		await expect.element(screen.getByRole('region', { name: 'No results' })).toBeVisible();
 		await expect
 			.element(screen.getByRole('heading', { name: 'No results', level: 2 }))
@@ -27,7 +27,7 @@ describe('EmptyState', () => {
 	});
 
 	it('associates the description and updates the heading without stale references', async () => {
-		const screen = render(EmptyState, {
+		const screen = await render(EmptyState, {
 			title: 'No downloads',
 			description: 'Downloads will appear here.'
 		});
@@ -44,7 +44,7 @@ describe('EmptyState', () => {
 
 	it('composes illustration, children, and interactive action snippets in reading order', async () => {
 		const onaction = vi.fn();
-		const screen = render(EmptyStateFixture, { onaction });
+		const screen = await render(EmptyStateFixture, { onaction });
 		const section = screen.getByRole('region', { name: 'No saved places' });
 		await expect
 			.element(section)
@@ -79,7 +79,7 @@ describe('EmptyState', () => {
 		const originalFontSize = document.documentElement.style.fontSize;
 		document.documentElement.style.fontSize = '32px';
 		try {
-			const screen = render(EmptyState, { title, description, style: 'width: 220px;' });
+			const screen = await render(EmptyState, { title, description, style: 'width: 220px;' });
 			await expect.element(screen.getByRole('heading', { name: title })).toBeVisible();
 			const section = screen.container.querySelector('section');
 			const message = section.querySelector('.empty-state-message');
@@ -96,7 +96,7 @@ describe('EmptyState', () => {
 		await cdp().send('Emulation.setEmulatedMedia', {
 			features: [{ name: 'prefers-contrast', value: 'more' }]
 		});
-		const screen = render(EmptyState, {
+		const screen = await render(EmptyState, {
 			title: 'No messages',
 			description: 'Start a conversation.'
 		});

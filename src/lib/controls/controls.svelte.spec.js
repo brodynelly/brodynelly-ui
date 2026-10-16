@@ -1,4 +1,4 @@
-import { userEvent } from '@vitest/browser/context';
+import { userEvent } from 'vitest/browser';
 import { tick } from 'svelte';
 import { describe, expect, it, vi } from 'vitest';
 import { render } from 'vitest-browser-svelte';
@@ -21,10 +21,10 @@ function callbacks() {
 
 describe('standalone controls', () => {
 	it('renders native controls with the documented defaults without shared CSS', async () => {
-		const toggle = render(Switch, { label: 'Notifications' });
-		const slider = render(Slider, { label: 'Brightness' });
-		const stepper = render(Stepper, { label: 'Count' });
-		const search = render(SearchField);
+		const toggle = await render(Switch, { label: 'Notifications' });
+		const slider = await render(Slider, { label: 'Brightness' });
+		const stepper = await render(Stepper, { label: 'Count' });
+		const search = await render(SearchField);
 
 		await expect.element(toggle.getByRole('switch', { name: 'Notifications' })).not.toBeChecked();
 		expect(toggle.getByRole('switch').element()).toHaveAttribute('type', 'checkbox');
@@ -38,14 +38,14 @@ describe('standalone controls', () => {
 		expect(search.getByRole('searchbox').element()).toHaveAttribute('placeholder', 'Search');
 	});
 
-	it('gives repeated controls unique label associations and forwards native attributes', () => {
+	it('gives repeated controls unique label associations and forwards native attributes', async () => {
 		const screens = [
-			render(Switch, { label: 'Repeated', name: 'preference', class: 'custom-switch' }),
-			render(Switch, { label: 'Repeated' }),
-			render(Slider, { label: 'Repeated', name: 'level', style: '--apple-accent: red' }),
-			render(Slider, { label: 'Repeated' }),
-			render(SearchField, { label: 'Repeated', name: 'query', autocomplete: 'off' }),
-			render(SearchField, { label: 'Repeated' })
+			await render(Switch, { label: 'Repeated', name: 'preference', class: 'custom-switch' }),
+			await render(Switch, { label: 'Repeated' }),
+			await render(Slider, { label: 'Repeated', name: 'level', style: '--apple-accent: red' }),
+			await render(Slider, { label: 'Repeated' }),
+			await render(SearchField, { label: 'Repeated', name: 'query', autocomplete: 'off' }),
+			await render(SearchField, { label: 'Repeated' })
 		];
 		const inputs = screens.map((screen) => screen.container.querySelector('input'));
 
@@ -65,7 +65,7 @@ describe('standalone controls', () => {
 
 	it('reflects parent-side binding changes without emitting user callbacks', async () => {
 		const handlers = callbacks();
-		const screen = render(ControlsFixture, handlers);
+		const screen = await render(ControlsFixture, handlers);
 
 		await screen.getByRole('button', { name: 'Update bindings' }).click();
 
@@ -78,7 +78,7 @@ describe('standalone controls', () => {
 
 	it('uses native disabled behavior for every control and can be enabled again', async () => {
 		const handlers = callbacks();
-		const screen = render(ControlsFixture, {
+		const screen = await render(ControlsFixture, {
 			disabled: true,
 			searchValue: 'Existing',
 			...handlers
@@ -117,7 +117,7 @@ describe('standalone controls', () => {
 describe('Switch', () => {
 	it('binds on label clicks and native Space, with checked state available inside callbacks', async () => {
 		const onchange = vi.fn();
-		const screen = render(ControlsFixture, { onSwitchChange: onchange });
+		const screen = await render(ControlsFixture, { onSwitchChange: onchange });
 		const toggle = screen.getByRole('switch', { name: 'Wi-Fi' });
 
 		await screen.getByText('Wi-Fi', { exact: true }).click();
@@ -136,7 +136,7 @@ describe('Switch', () => {
 	});
 
 	it('participates in native form data as a checkbox', async () => {
-		const screen = render(ControlsFixture);
+		const screen = await render(ControlsFixture);
 		const form = screen.container.querySelector('form');
 
 		expect(new FormData(form).has('wifi')).toBe(false);
@@ -149,7 +149,7 @@ describe('Slider', () => {
 	it('normalizes off-grid values and changed bounds/step from the real native range without callbacks', async () => {
 		const oninput = vi.fn();
 		const onchange = vi.fn();
-		const screen = render(ControlsFixture, {
+		const screen = await render(ControlsFixture, {
 			sliderValue: 55,
 			sliderStep: 10,
 			onSliderInput: oninput,
@@ -178,7 +178,10 @@ describe('Slider', () => {
 	it('uses native Arrow/Home/End behavior and updates bindings, fill, and callbacks immediately', async () => {
 		const oninput = vi.fn();
 		const onchange = vi.fn();
-		const screen = render(ControlsFixture, { onSliderInput: oninput, onSliderChange: onchange });
+		const screen = await render(ControlsFixture, {
+			onSliderInput: oninput,
+			onSliderChange: onchange
+		});
 		const slider = screen.getByRole('slider', { name: 'Volume' });
 
 		slider.element().focus();
@@ -200,7 +203,7 @@ describe('Slider', () => {
 	});
 
 	it('respects custom native min, max, and step on the keyboard', async () => {
-		const screen = render(ControlsFixture, {
+		const screen = await render(ControlsFixture, {
 			sliderValue: 12,
 			sliderMin: 10,
 			sliderMax: 20,
@@ -222,7 +225,7 @@ describe('Slider', () => {
 describe('Stepper', () => {
 	it('has 44px native buttons, keyboard activation, an announced value, and disabled bounds', async () => {
 		const onchange = vi.fn();
-		const screen = render(ControlsFixture, { stepperMax: 2, onStepperChange: onchange });
+		const screen = await render(ControlsFixture, { stepperMax: 2, onStepperChange: onchange });
 		const decrease = screen.getByRole('button', { name: 'Decrease Copies' });
 		const increase = screen.getByRole('button', { name: 'Increase Copies' });
 		const output = screen.getByRole('status', { name: 'Copies' });
@@ -257,7 +260,7 @@ describe('Stepper', () => {
 
 	it('handles decimal steps, clamps at bounds, and synchronizes changed bounds without callbacks', async () => {
 		const onchange = vi.fn();
-		const screen = render(ControlsFixture, {
+		const screen = await render(ControlsFixture, {
 			stepperMax: 0.3,
 			stepperStep: 0.1,
 			onStepperChange: onchange
@@ -282,7 +285,10 @@ describe('SearchField', () => {
 	it('binds native typing/commit events and supports keyboard clearing with focus restoration', async () => {
 		const oninput = vi.fn();
 		const onchange = vi.fn();
-		const screen = render(ControlsFixture, { onSearchInput: oninput, onSearchChange: onchange });
+		const screen = await render(ControlsFixture, {
+			onSearchInput: oninput,
+			onSearchChange: onchange
+		});
 		const input = screen.getByRole('searchbox', { name: 'Search music' });
 
 		await input.fill('Piano');
@@ -304,7 +310,7 @@ describe('SearchField', () => {
 	});
 
 	it('clears using a 44px native button, keeps native form data current, and never submits', async () => {
-		const screen = render(ControlsFixture, { searchValue: 'Albums' });
+		const screen = await render(ControlsFixture, { searchValue: 'Albums' });
 		const clear = screen.getByRole('button', { name: 'Clear Search music' });
 		const input = screen.getByRole('searchbox');
 		const form = screen.container.querySelector('form');
@@ -321,7 +327,7 @@ describe('SearchField', () => {
 
 	it('preserves native readonly values, including the clear action', async () => {
 		const oninput = vi.fn();
-		const screen = render(SearchField, { value: 'Read only', readonly: true, oninput });
+		const screen = await render(SearchField, { value: 'Read only', readonly: true, oninput });
 		const input = screen.getByRole('searchbox');
 		const clear = screen.getByRole('button', { name: 'Clear Search' });
 

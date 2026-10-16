@@ -1,4 +1,4 @@
-import { cdp, page, userEvent } from '@vitest/browser/context';
+import { cdp, page, userEvent } from 'vitest/browser';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { render } from 'vitest-browser-svelte';
 import ComponentsPage from './+page.svelte';
@@ -37,7 +37,7 @@ function contrast(foreground, background) {
 
 describe('interactive component gallery', () => {
 	it('filters the split view content and opens a real modal sheet', async () => {
-		const screen = render(ComponentsPage);
+		const screen = await render(ComponentsPage);
 		const dialog = screen.container.querySelector('dialog');
 		expect(dialog.open).toBe(false);
 		await expect
@@ -60,7 +60,7 @@ describe('interactive component gallery', () => {
 	});
 
 	it('keeps the menu checkbox and action status synchronized across reopening', async () => {
-		render(ComponentsPage);
+		await render(ComponentsPage);
 		const trigger = page.getByRole('button', { name: 'Note actions' });
 		const pin = page.getByRole('menuitemcheckbox', { name: 'Pin note', exact: true });
 		await trigger.click();
@@ -78,7 +78,7 @@ describe('interactive component gallery', () => {
 
 	it('keeps search, clear, selection and settings usable at 320 CSS pixels', async () => {
 		await page.viewport(320, 900);
-		const screen = render(ComponentsPage);
+		const screen = await render(ComponentsPage);
 		await expect
 			.element(page.getByText('Search and choose a note, then read it below.'))
 			.toBeVisible();
@@ -134,7 +134,7 @@ describe('interactive component gallery', () => {
 		await cdp().send('Emulation.setEmulatedMedia', {
 			features: [{ name: 'prefers-color-scheme', value: 'light' }]
 		});
-		render(ComponentsPage);
+		await render(ComponentsPage);
 		const button = page.getByRole('button', { name: 'Open sheet', exact: true });
 		await userEvent.hover(button);
 		const styles = getComputedStyle(button.element());
@@ -150,7 +150,7 @@ describe('interactive component gallery', () => {
 					{ name: 'prefers-reduced-transparency', value: solid ? 'reduce' : 'no-preference' }
 				]
 			});
-			render(ComponentsPage);
+			await render(ComponentsPage);
 			const input = page.getByRole('searchbox', { name: 'Search notes' }).element();
 			const fill = getComputedStyle(input.closest('.search-control')).backgroundColor;
 			expect(rgba(fill)[3]).toBe(255);
@@ -167,7 +167,7 @@ describe('interactive component gallery', () => {
 		await cdp().send('Emulation.setEmulatedMedia', {
 			features: [{ name: 'prefers-color-scheme', value: 'light' }]
 		});
-		const screen = render(ComponentsPage);
+		const screen = await render(ComponentsPage);
 		const background = getComputedStyle(document.body).backgroundColor;
 		expect(rgba(background)).toEqual([242, 242, 247, 255]);
 		for (const element of screen.container.querySelectorAll(
@@ -179,7 +179,10 @@ describe('interactive component gallery', () => {
 			.element(page.getByRole('link', { name: 'Windows', exact: true }))
 			.toHaveAttribute('href', '/preview/windows');
 		await expect
-			.element(page.getByRole('link', { name: 'Existing library' }))
+			.element(page.getByRole('link', { name: 'Full showcase' }))
+			.toHaveAttribute('href', '/preview/showcase');
+		await expect
+			.element(page.getByRole('link', { name: 'Brodynelly UI — source catalog' }))
 			.toHaveAttribute('href', '/preview/');
 	});
 });

@@ -1,0 +1,16 @@
+{
+	"schema_version": "opencode-luuna.candidate/v1",
+	"template": true,
+	"approved_plan_revision": null,
+	"candidate_set_id": null,
+	"repositories": [],
+	"dependency_bindings": [],
+	"frozen_at": null,
+	"evidence": [],
+	"limitations": [
+		"Template only; no source identities observed.",
+		"Each repository needs its ID, real base/candidate commit or explicit precommit tree identity, worktree, and dirty/untracked state.",
+		"Dependency bindings identify the exact local package, artifact, generated client, or isolated endpoint tested.",
+		"Any relevant mutation invalidates affected evidence; publication requires commit-bound results."
+	]
+}

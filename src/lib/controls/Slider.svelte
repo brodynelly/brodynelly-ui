@@ -190,7 +190,7 @@
 	}
 
 	input:focus-visible {
-		outline: 2px solid var(--slider-fill);
+		outline: 2px solid var(--apple-focus-ring, var(--slider-fill));
 		outline-offset: 2px;
 	}
 
@@ -262,6 +262,10 @@
 
 		input {
 			forced-color-adjust: none;
+		}
+
+		input:focus-visible {
+			outline-color: Highlight;
 		}
 
 		input::-webkit-slider-thumb {

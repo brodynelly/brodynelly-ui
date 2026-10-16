@@ -3,6 +3,8 @@ node_modules/
 build/
 dist/
 .checks/
+/.opencode/runs/
+/.vitest-attachments/
 coverage/
 *.tgz
 .DS_Store

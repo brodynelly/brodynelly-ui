@@ -391,6 +391,7 @@
 		--apple-label-primary: var(--apple-label);
 		--apple-label-secondary: var(--apple-secondary-label);
 		--apple-action-text: var(--apple-sheet-action-text, var(--sheet-action-text));
+		--apple-focus-ring: var(--apple-sheet-focus-ring, var(--apple-action-text));
 		--apple-control-fill: var(--sheet-fallback-fill);
 		--apple-control-solid-fill: var(--sheet-fallback-fill);
 		--apple-control-track: var(--sheet-fallback-fill);
@@ -523,7 +524,7 @@
 	}
 
 	.sheet-close:focus-visible {
-		outline: 3px solid var(--apple-accent, #007aff);
+		outline: 3px solid var(--apple-focus-ring);
 		outline-offset: 3px;
 	}
 

@@ -7,6 +7,7 @@
 	import SearchField from '../controls/SearchField.svelte';
 	import Switch from '../controls/Switch.svelte';
 	import Slider from '../controls/Slider.svelte';
+	import Stepper from '../controls/Stepper.svelte';
 	import EmptyState from '../empty-state/EmptyState.svelte';
 	import Menu from '../menu/Menu.svelte';
 	import MenuItem from '../menu/MenuItem.svelte';
@@ -31,6 +32,10 @@
 >
 	{#snippet sidebar()}
 		<SearchField label="Surface search" bind:value={query} />
+		<Switch label="Sidebar switch" />
+		<Slider label="Sidebar slider" />
+		<Stepper label="Sidebar count" value={1} />
+		<Menu label="Sidebar actions"><MenuItem label="Sidebar item" /></Menu>
 	{/snippet}
 	<EmptyState title="No surface items" description="Create an item to get started." />
 	<Switch label="Surface switch" {checked} />

@@ -1,16 +1,16 @@
-import { cdp } from '@vitest/browser/context';
+import { cdp } from 'vitest/browser';
 import { afterEach, describe, expect, it } from 'vitest';
 import { cleanup, render } from 'vitest-browser-svelte';
 import ProgressBar from './ProgressBar.svelte';
 
 afterEach(async () => {
-	cleanup();
+	await cleanup();
 	await cdp().send('Emulation.setEmulatedMedia', { features: [] });
 });
 
 describe('ProgressBar', () => {
 	it('defaults to a named native, determinate progress indicator at zero', async () => {
-		const screen = render(ProgressBar, { label: 'Importing files' });
+		const screen = await render(ProgressBar, { label: 'Importing files' });
 		const progress = screen.getByRole('progressbar', { name: 'Importing files' });
 		await expect.element(progress).toBeVisible();
 		expect(progress.element().tagName).toBe('PROGRESS');
@@ -32,7 +32,7 @@ describe('ProgressBar', () => {
 		{ value: Number.POSITIVE_INFINITY, max: 80, expected: 0, text: '0%' },
 		{ value: Number.NEGATIVE_INFINITY, max: 80, expected: 0, text: '0%' }
 	])('normalizes value $value within max $max', async ({ value, max, expected, text }) => {
-		const screen = render(ProgressBar, { label: 'Download', value, max });
+		const screen = await render(ProgressBar, { label: 'Download', value, max });
 		const progress = screen.getByRole('progressbar', { name: 'Download' });
 		expect(progress.element().value).toBe(expected);
 		expect(progress.element().max).toBe(max);
@@ -44,7 +44,7 @@ describe('ProgressBar', () => {
 	it.each([0, -10, Number.NaN, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY])(
 		'guards invalid maximum %s without becoming indeterminate',
 		async (max) => {
-			const screen = render(ProgressBar, { label: 'Syncing', value: 30, max });
+			const screen = await render(ProgressBar, { label: 'Syncing', value: 30, max });
 			const progress = screen.getByRole('progressbar', { name: 'Syncing' });
 			expect(progress.element().max).toBe(100);
 			expect(progress.element().value).toBe(30);
@@ -54,7 +54,7 @@ describe('ProgressBar', () => {
 	);
 
 	it('updates values and keeps the accessible value when the visual percentage is hidden', async () => {
-		const screen = render(ProgressBar, {
+		const screen = await render(ProgressBar, {
 			label: 'Preparing',
 			value: 10,
 			class: 'custom-progress',
@@ -82,7 +82,7 @@ describe('ProgressBar', () => {
 				{ name: 'prefers-contrast', value: 'more' }
 			]
 		});
-		const screen = render(ProgressBar, { label: 'Uploading', value: 25 });
+		const screen = await render(ProgressBar, { label: 'Uploading', value: 25 });
 		const progress = screen.getByRole('progressbar', { name: 'Uploading' });
 		await screen.rerender({ value: 75 });
 		expect(progress.element().value).toBe(75);

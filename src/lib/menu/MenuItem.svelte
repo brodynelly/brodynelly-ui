@@ -121,7 +121,7 @@
 
 	.menu-item:focus-visible {
 		background: var(--fills-tertiary, rgb(118 118 128 / 12%));
-		outline: 2px solid var(--colors-accent, #007aff);
+		outline: 2px solid var(--apple-focus-ring, var(--colors-accent, #007aff));
 		outline-offset: -2px;
 	}
 

@@ -1,0 +1,22 @@
+{
+	"schema_version": "opencode-luuna.check-result/v1",
+	"template": true,
+	"assignment_id": null,
+	"recipe_id": null,
+	"approved_plan_revision": null,
+	"candidate_identity": null,
+	"dependency_bindings": [],
+	"command": { "executable": null, "arguments": [], "working_directory": null },
+	"tool_versions": {},
+	"environment_fingerprint": null,
+	"started_at": null,
+	"finished_at": null,
+	"exit_code": null,
+	"status": "blocked",
+	"reason": "Template only; no command executed or evidence observed.",
+	"stale": false,
+	"tests": { "executed": null, "passed": null, "failed": null, "skipped": null },
+	"output_excerpt": null,
+	"artifacts": [],
+	"limitations": ["Not an official Luuna CheckResult schema or a completed check record."]
+}

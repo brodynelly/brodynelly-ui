@@ -178,7 +178,7 @@
 	}
 
 	button:focus-visible {
-		outline: 2px solid var(--apple-accent, var(--colors-accent, #0088ff));
+		outline: 2px solid var(--apple-focus-ring, var(--apple-accent, var(--colors-accent, #0088ff)));
 		outline-offset: 2px;
 	}
 

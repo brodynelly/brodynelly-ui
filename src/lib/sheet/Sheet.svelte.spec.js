@@ -1,4 +1,4 @@
-import { cdp, page, userEvent } from '@vitest/browser/context';
+import { cdp, page, userEvent } from 'vitest/browser';
 import { tick } from 'svelte';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render } from 'vitest-browser-svelte';
@@ -30,7 +30,7 @@ async function settled(dialog) {
 }
 
 afterEach(async () => {
-	cleanup();
+	await cleanup();
 	vi.restoreAllMocks();
 	await cdp().send('Emulation.setEmulatedMedia', { features: [] });
 });
@@ -38,7 +38,7 @@ afterEach(async () => {
 describe('Sheet', () => {
 	it('opens a named native modal, contains focus, and restores it after Escape', async () => {
 		const onclose = vi.fn();
-		const screen = render(SheetFixture, { onclose });
+		const screen = await render(SheetFixture, { onclose });
 		const dialog = screen.container.querySelector('dialog');
 		expect(dialog.open).toBe(false);
 		await screen.getByRole('button', { name: 'Open sheet', exact: true }).click();
@@ -61,7 +61,7 @@ describe('Sheet', () => {
 
 	it('closes through the built-in close button and a bound footer action', async () => {
 		const onclose = vi.fn();
-		const screen = render(SheetFixture, { open: true, onclose });
+		const screen = await render(SheetFixture, { open: true, onclose });
 		const dialog = screen.container.querySelector('dialog');
 		await screen.getByRole('button', { name: 'Close sheet' }).click();
 		await expect.poll(() => dialog.open).toBe(false);
@@ -73,7 +73,7 @@ describe('Sheet', () => {
 
 	it('only light-dismisses when the pointer starts and ends outside the surface', async () => {
 		await page.viewport(900, 700);
-		const screen = render(SheetFixture, { open: true });
+		const screen = await render(SheetFixture, { open: true });
 		const dialog = screen.container.querySelector('dialog');
 		await settled(dialog);
 		await userEvent.click(dialog, { position: { x: 12, y: 12 } });
@@ -83,7 +83,7 @@ describe('Sheet', () => {
 	});
 
 	it('keeps nondismissible sheets open until the bound value changes', async () => {
-		const screen = render(SheetFixture, { open: true, dismissible: false });
+		const screen = await render(SheetFixture, { open: true, dismissible: false });
 		const dialog = screen.container.querySelector('dialog');
 		await settled(dialog);
 		expect(dialog.querySelector('.sheet-close')).toBeNull();
@@ -95,7 +95,7 @@ describe('Sheet', () => {
 	});
 
 	it('tracks only the handle 1:1 and springs back from a canceled drag', async () => {
-		const screen = render(SheetFixture, { open: true, longContent: true });
+		const screen = await render(SheetFixture, { open: true, longContent: true });
 		const dialog = screen.container.querySelector('dialog');
 		const handle = dialog.querySelector('.sheet-handle');
 		const body = dialog.querySelector('.sheet-content');
@@ -121,7 +121,7 @@ describe('Sheet', () => {
 	});
 
 	it('can grab a spring mid-snapback without jumping to its target', async () => {
-		const screen = render(SheetFixture, { open: true });
+		const screen = await render(SheetFixture, { open: true });
 		const dialog = screen.container.querySelector('dialog');
 		const handle = dialog.querySelector('.sheet-handle');
 		await settled(dialog);
@@ -142,7 +142,7 @@ describe('Sheet', () => {
 
 	it('dismisses a sufficiently projected drag and does not duplicate close callbacks', async () => {
 		const onclose = vi.fn();
-		const screen = render(SheetFixture, { open: true, onclose });
+		const screen = await render(SheetFixture, { open: true, onclose });
 		const dialog = screen.container.querySelector('dialog');
 		const handle = dialog.querySelector('.sheet-handle');
 		await settled(dialog);
@@ -155,7 +155,7 @@ describe('Sheet', () => {
 	});
 
 	it('captures a real pointer so dragging continues outside the grabber', async () => {
-		const screen = render(SheetFixture, { open: true, longContent: true });
+		const screen = await render(SheetFixture, { open: true, longContent: true });
 		const dialog = screen.container.querySelector('dialog');
 		const handle = dialog.querySelector('.sheet-handle');
 		const body = dialog.querySelector('.sheet-content');
@@ -174,7 +174,7 @@ describe('Sheet', () => {
 		await cdp().send('Emulation.setEmulatedMedia', {
 			features: [{ name: 'prefers-reduced-motion', value: 'reduce' }]
 		});
-		const screen = render(SheetFixture, { open: true });
+		const screen = await render(SheetFixture, { open: true });
 		const dialog = screen.container.querySelector('dialog');
 		const handle = dialog.querySelector('.sheet-handle');
 		await tick();
@@ -190,7 +190,7 @@ describe('Sheet', () => {
 
 	it('preserves native modal stacking and keeps scroll locked until the last sheet closes', async () => {
 		const original = document.documentElement.style.overflowY;
-		const screen = render(SheetFixture, { open: true, showNested: true });
+		const screen = await render(SheetFixture, { open: true, showNested: true });
 		await screen.getByRole('button', { name: 'Open nested sheet' }).click();
 		const dialogs = screen.container.querySelectorAll('dialog');
 		await expect.poll(() => dialogs[1].matches(':modal')).toBe(true);
@@ -207,7 +207,7 @@ describe('Sheet', () => {
 	it('synchronizes a native close with the binding and releases its scroll lock', async () => {
 		const original = document.documentElement.style.overflowY;
 		const onclose = vi.fn();
-		const screen = render(SheetFixture, { open: true, onclose });
+		const screen = await render(SheetFixture, { open: true, onclose });
 		const dialog = screen.container.querySelector('dialog');
 		await tick();
 		dialog.close();
@@ -218,7 +218,7 @@ describe('Sheet', () => {
 
 	it('uses source grabber geometry, a mobile bottom inset and a centered desktop layout', async () => {
 		await page.viewport(390, 844);
-		const screen = render(SheetFixture, { open: true });
+		const screen = await render(SheetFixture, { open: true });
 		const dialog = screen.container.querySelector('dialog');
 		await settled(dialog);
 		const mobile = dialog.getBoundingClientRect();
@@ -245,10 +245,10 @@ describe('Sheet', () => {
 		opener.focus();
 		const onclose = vi.fn();
 		try {
-			const screen = render(Sheet, { open: true, title: 'Unmount test', onclose });
+			const screen = await render(Sheet, { open: true, title: 'Unmount test', onclose });
 			await tick();
 			expect(style.overflowY).toBe('hidden');
-			screen.unmount();
+			await screen.unmount();
 			await tick();
 			expect(style.overflowX).toBe('clip');
 			expect(style.getPropertyPriority('overflow-x')).toBe('important');
@@ -256,7 +256,7 @@ describe('Sheet', () => {
 			expect(document.activeElement).toBe(opener);
 			expect(onclose).not.toHaveBeenCalled();
 		} finally {
-			cleanup();
+			await cleanup();
 			opener.remove();
 			style.cssText = original;
 		}
@@ -264,7 +264,7 @@ describe('Sheet', () => {
 
 	it('can reverse an in-flight bound close without leaving the dialog or scroll lock stale', async () => {
 		const onclose = vi.fn();
-		const screen = render(SheetFixture, { open: true, onclose });
+		const screen = await render(SheetFixture, { open: true, onclose });
 		const dialog = screen.container.querySelector('dialog');
 		await settled(dialog);
 		await screen.rerender({ open: false });

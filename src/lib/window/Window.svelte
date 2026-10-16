@@ -45,6 +45,7 @@
 		--apple-label: var(--apple-window-color, #1d1d1f);
 		--apple-secondary-label: var(--apple-window-secondary-label, #424245);
 		--apple-action-text: var(--apple-window-action-text, #0050a4);
+		--apple-focus-ring: var(--apple-window-focus-ring, var(--apple-action-text));
 		--apple-control-fill: var(--apple-window-fill, #d1d1d6);
 		--apple-control-solid-fill: var(--apple-window-fill, #d1d1d6);
 		--apple-control-track: var(--apple-window-track, #c7c7cc);

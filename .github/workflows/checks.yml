@@ -14,11 +14,18 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
       - run: npm ci --ignore-scripts
+      - run: npm audit
+      - run: npm audit --omit=dev
+      - name: Verify esbuild without enabling install scripts
+        run: |
+          node --input-type=module -e "import { transformSync, version } from 'esbuild'; console.log(version); console.log(transformSync('const value: number = 1', { loader: 'ts' }).code)"
       - run: npm run sync
       - name: Provision CI-only Chromium
         run: npm exec --no -- playwright install --with-deps chromium
@@ -26,6 +33,10 @@ jobs:
       - run: npm run test:registry
       - run: npm run test:installer
       - run: npm run registry:check
+      - run: npm run test:opencode
+      - run: npm run test:verification
+      - run: npm run test:distribution
+      - run: npm run test:git-package
       - run: npm run lint
       - run: npm run site:build
       - name: Inspect distributable without lifecycle scripts

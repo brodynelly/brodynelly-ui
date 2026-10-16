@@ -1,4 +1,5 @@
 import { sveltekit } from '@sveltejs/kit/vite';
+import { playwright } from '@vitest/browser-playwright';
 import { defineConfig } from 'vite';
 
 const launch = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH
@@ -14,12 +15,11 @@ export default defineConfig({
 				extends: './vite.config.js',
 				test: {
 					name: 'client',
-					environment: 'browser',
 					browser: {
 						enabled: true,
-						provider: 'playwright',
+						provider: playwright({ launchOptions: launch }),
 						headless: true,
-						instances: [{ browser: 'chromium', ...(launch ? { launch } : {}) }],
+						instances: [{ browser: 'chromium' }],
 						screenshotDirectory: '.checks/screenshots'
 					},
 					include: ['src/**/*.svelte.{test,spec}.{js,ts}'],

@@ -84,7 +84,8 @@
 			<a href={`${base}/components`}
 				>Try the interactive components <span aria-hidden="true">→</span></a
 			>
-			<a href={`${base}/`}>Browse the existing library</a>
+			<a href={`${base}/showcase`}>Browse the full showcase</a>
+			<a href={`${base}/`}>Brodynelly UI — source catalog</a>
 		</footer>
 	</main>
 </div>

@@ -45,11 +45,12 @@
 <main class="component-page">
 	<nav class="page-nav" aria-label="Component previews">
 		<a href={`${base}/windows`}>Windows <span aria-hidden="true">↗</span></a>
-		<a href={`${base}/`}>Existing library <span aria-hidden="true">↗</span></a>
+		<a href={`${base}/showcase`}>Full showcase <span aria-hidden="true">↗</span></a>
+		<a href={`${base}/`}>Brodynelly UI — source catalog</a>
 	</nav>
 
 	<header class="intro">
-		<p class="eyebrow">APPLE-SVELTE / INTERACTIVE COMPONENTS</p>
+		<p class="eyebrow">BRODYNELLY UI / INTERACTIVE COMPONENTS</p>
 		<h1>Familiar by design.</h1>
 		<p class="lede">
 			Real Svelte components. Native keyboard behavior. Motion that follows your lead.

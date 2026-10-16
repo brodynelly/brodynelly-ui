@@ -1,4 +1,4 @@
-import { page } from '@vitest/browser/context';
+import { page } from 'vitest/browser';
 import { tick } from 'svelte';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render } from 'vitest-browser-svelte';
@@ -7,7 +7,7 @@ import Sidebar from './Sidebar.svelte';
 const initialViewport = { width: window.innerWidth, height: window.innerHeight };
 
 afterEach(async () => {
-	cleanup();
+	await cleanup();
 	vi.clearAllTimers();
 	vi.useRealTimers();
 	vi.restoreAllMocks();
@@ -17,7 +17,7 @@ afterEach(async () => {
 describe('Sidebar', () => {
 	it('preserves mobile toggle, close-button focus, Escape, and custom props', async () => {
 		await page.viewport(390, 844);
-		const screen = render(Sidebar, {
+		const screen = await render(Sidebar, {
 			id: 'navigation-sidebar',
 			style: '--sidebar-test-marker: preserved'
 		});
@@ -56,7 +56,7 @@ describe('Sidebar', () => {
 
 	it('preserves desktop layout and resets state when crossing the mobile breakpoint', async () => {
 		await page.viewport(1024, 768);
-		const screen = render(Sidebar);
+		const screen = await render(Sidebar);
 		const aside = screen.container.querySelector('aside');
 		const backdrop = screen.container.querySelector('label');
 
@@ -90,7 +90,7 @@ describe('Sidebar', () => {
 			'Mozilla/5.0 (Macintosh) AppleWebKit/605.1.15 Version/17.0 Safari/605.1.15'
 		);
 		vi.useFakeTimers({ toFake: ['setInterval', 'clearInterval', 'setTimeout', 'clearTimeout'] });
-		const screen = render(Sidebar);
+		const screen = await render(Sidebar);
 		const aside = screen.container.querySelector('aside');
 		await tick();
 		expect(aside.classList.contains('default')).toBe(true);
@@ -103,7 +103,7 @@ describe('Sidebar', () => {
 			expect(vi.getTimerCount()).toBe(0);
 		}
 		expect(aside.style.maxWidth).toBe('320px');
-		screen.unmount();
+		await screen.unmount();
 		await tick();
 		expect(aside.isConnected).toBe(false);
 		vi.advanceTimersByTime(100);

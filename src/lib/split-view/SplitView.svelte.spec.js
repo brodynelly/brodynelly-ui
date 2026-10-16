@@ -1,4 +1,4 @@
-import { page, userEvent } from '@vitest/browser/context';
+import { page, userEvent } from 'vitest/browser';
 import { describe, expect, it } from 'vitest';
 import { render } from 'vitest-browser-svelte';
 import SplitViewFixture from './SplitView.spec.svelte';
@@ -11,7 +11,7 @@ function readRatio() {
 // Vitest runner iframe focus/scale interference. No coverage is skipped.
 describe('SplitView', () => {
 	it('renders the 4:5 source panes with composable content and an accessible separator', async () => {
-		const { container, rerender } = render(SplitViewFixture);
+		const { container, rerender } = await render(SplitViewFixture);
 		const sidebar = container.querySelector('.apple-split-view__sidebar');
 		const content = container.querySelector('.apple-split-view__content');
 		const separator = page.getByRole('separator', { name: 'Resize sidebar' });
@@ -35,7 +35,7 @@ describe('SplitView', () => {
 	});
 
 	it('updates bind:ratio with arrow keys, Shift, Home, and End, respecting bounds', async () => {
-		render(SplitViewFixture);
+		await render(SplitViewFixture);
 		const separator = page.getByRole('separator');
 		separator.element().focus();
 
@@ -55,7 +55,7 @@ describe('SplitView', () => {
 	});
 
 	it('clamps external and invalid ratios and removes resizing when disabled', async () => {
-		const { container, rerender } = render(SplitViewFixture, {
+		const { container, rerender } = await render(SplitViewFixture, {
 			ratio: 0.9,
 			minRatio: 0.3,
 			maxRatio: 0.6

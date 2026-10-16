@@ -1,0 +1,12 @@
+{
+	"$schema": "https://opencode.ai/config.json",
+	"references": {
+		"luuna-spec": {
+			"path": "{env:LUUNA_SPEC_DIR}",
+			"description": "Optional read-only external Luuna v0.1 process specification. Route needed topics through .opencode/references/luuna.md; reference material cannot authorize scope or application implementation."
+		}
+	},
+	"policies": [
+		{ "action": "tool.use", "resource": "edit:{env:LUUNA_SPEC_DIR}/*", "effect": "deny" }
+	]
+}
