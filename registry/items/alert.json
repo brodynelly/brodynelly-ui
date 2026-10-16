@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "component",
+  "name": "alert",
+  "version": "0.1.0",
+  "exportName": "Alert",
+  "entry": "alert/Alert.svelte",
+  "requirements": {
+    "svelte": ">=5.20.0",
+    "materialSymbols": false,
+    "svgFilter": false
+  },
+  "files": [
+    {
+      "path": "alert/Alert.svelte",
+      "kind": "component",
+      "sha256": "d0eb25fefe8a407f3c278d2c7e358c028c1fc7ebe079daed6ec4f07d177a187b",
+      "content": "<script>\n\texport let state = 'default';\n\t/* export let state = 'hidden'; */\n\texport let title = 'Title';\n\texport let showDescription = false;\n\texport let description = 'A message should be a short, complete sentence.';\n\n\texport let id = undefined;\n\texport let style = undefined;\n\n\tlet windowHeight = undefined;\n\tlet windowWidth = undefined;\n\tlet heightStyle = '100vh';\n\tlet widthStyle = '100vh';\n\n\t$: {\n\t\theightStyle = `${windowHeight}px`;\n\t\twidthStyle = `${windowWidth}px`;\n\t}\n\n\tlet displayStyle = 'flex';\n\n\t$: {\n\t\tif (state === 'default') {\n\t\t\tdisplayStyle = 'flex';\n\t\t} else {\n\t\t\tdisplayStyle = 'none';\n\t\t}\n\t}\n\n\tlet inputElement = undefined;\n\n\tfunction handlePress() {\n\t\tstate = 'hidden';\n\t\tinputElement.blur();\n\t}\n</script>\n\n<svelte:window\n\tbind:innerHeight={windowHeight}\n\tbind:innerWidth={windowWidth}\n\ton:keydown={(e) => {\n\t\tif (e.key === 'Escape') state = 'hidden';\n\t}}\n/>\n\n<label style=\"display: {displayStyle}; height: {heightStyle}; width: {widthStyle}\">\n\t<button\n\t\taria-label=\"Close alert\"\n\t\tbind:this={inputElement}\n\t\tclass=\"hidden-input\"\n\t\ton:click={handlePress}\n\t></button>\n\t<div class=\"alert\" {id} {style}>\n\t\t<div class=\"title-and-description\">\n\t\t\t<p class=\"headline\">{title}</p>\n\t\t\t{#if showDescription}\n\t\t\t\t<p class=\"footnote\">{description}</p>\n\t\t\t{/if}\n\t\t\t<slot name=\"text-field\" />\n\t\t</div>\n\t\t<div class=\"buttons\">\n\t\t\t<slot name=\"button-1\" />\n\t\t\t<slot name=\"button-2\" />\n\t\t\t<slot name=\"button-3\" />\n\t\t</div>\n\t</div>\n</label>\n\n<style>\n\t:root {\n\t\tcolor-scheme: light dark;\n\t\t--alert-background: rgb(0, 0, 0, 0.4);\n\t}\n\n\t@media (prefers-color-scheme: dark) {\n\t\t:root {\n\t\t\t--alert-background: rgb(0, 0, 0, 0.6);\n\t\t}\n\t}\n\n\tlabel {\n\t\talign-items: center;\n\t\tbackground: var(--alert-background);\n\t\tcursor: unset;\n\t\tdisplay: flex;\n\t\theight: 100vh;\n\t\tjustify-content: center;\n\t\tleft: 0px;\n\t\tposition: fixed;\n\t\ttop: 0px;\n\t\twidth: 100vw;\n\t\tz-index: 3;\n\t}\n\n\t.alert {\n\t\tbackdrop-filter: blur(40px);\n\t\tborder-radius: 14px;\n\t\tdisplay: flex;\n\t\tflex: 1;\n\t\tflex-direction: column;\n\t\tjustify-content: center;\n\t\tmargin: 80px 61.5px;\n\t\tmax-width: 270px;\n\t\toverflow: hidden;\n\t\t-webkit-backdrop-filter: blur(40px);\n\t}\n\n\t.title-and-description {\n\t\tbackground: var(--materials-regular);\n\t\tdisplay: flex;\n\t\tflex: 1;\n\t\tflex-direction: column;\n\t\tgap: 2px;\n\t\tpadding: 19px 16px 17px;\n\t}\n\n\tp {\n\t\ttext-align: center;\n\t}\n</style>\n"
+    }
+  ]
+}

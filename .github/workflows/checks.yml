@@ -1,0 +1,32 @@
+name: Product checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run sync
+      - name: Provision CI-only Chromium
+        run: npm exec --no -- playwright install --with-deps chromium
+      - run: npm test
+      - run: npm run test:registry
+      - run: npm run test:installer
+      - run: npm run registry:check
+      - run: npm run lint
+      - run: npm run site:build
+      - name: Inspect distributable without lifecycle scripts
+        run: npm pack --dry-run --ignore-scripts

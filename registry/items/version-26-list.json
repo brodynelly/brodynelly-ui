@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "component",
+  "name": "version-26-list",
+  "version": "0.1.0",
+  "exportName": "Version26List",
+  "entry": "version-26-list/Version26List.svelte",
+  "requirements": {
+    "svelte": ">=5.20.0",
+    "materialSymbols": true,
+    "svgFilter": false
+  },
+  "files": [
+    {
+      "path": "version-26-list/Version26List.svelte",
+      "kind": "component",
+      "sha256": "6e3823589513e765882ca5256cb026e19bd640bd678f1ca4802683be7488cd93",
+      "content": "<script>\n\texport let showHeader = false;\n\texport let headerType = 'default';\n\t/* export let headerType = \"plain\"; */\n\t/* export let headerType = \"prominent\"; */\n\texport let header = 'Header text';\n\texport let detail = 'Detail';\n\texport let disclosure = 'arrow_forward_ios';\n\texport let showFooter = false;\n\texport let footer = 'Footer text';\n\n\texport let id = undefined;\n\texport let onPress = undefined;\n\texport let style = undefined;\n\n\tlet marginTop = 'unset';\n\tif (showHeader) {\n\t\tmarginTop = '18px';\n\t} else {\n\t\tmarginTop = '24px';\n\t}\n\n\tlet marginBottom = 'unset';\n\tif (showFooter) {\n\t\tmarginBottom = '18px';\n\t} else {\n\t\tmarginBottom = '24px';\n\t}\n</script>\n\n<div class=\"collection\" {id} style=\"{style}; margin: {marginTop} 0px {marginBottom}\">\n\t{#if showHeader}\n\t\t{#if headerType === 'default'}\n\t\t\t<p class=\"headline\">{header}</p>\n\t\t{:else if headerType === 'plain'}\n\t\t\t<label class=\"plain\">\n\t\t\t\t<p class=\"title3-emphasized\">{header}</p>\n\t\t\t\t<div class=\"detail\">\n\t\t\t\t\t<p class=\"body\">{detail}</p>\n\t\t\t\t\t<button class=\"symbol\" on:click={onPress}>{disclosure}</button>\n\t\t\t\t</div>\n\t\t\t</label>\n\t\t{:else}\n\t\t\t<label class=\"prominent\">\n\t\t\t\t{header}\n\t\t\t\t<div class=\"detail\">\n\t\t\t\t\t<p class=\"body\">{detail}</p>\n\t\t\t\t\t<button class=\"symbol\" on:click={onPress}>{disclosure}</button>\n\t\t\t\t</div>\n\t\t\t</label>\n\t\t{/if}\n\t{/if}\n\t<div class=\"list\">\n\t\t<slot />\n\t</div>\n\t{#if showFooter}\n\t\t<p class=\"footnote\">{footer}</p>\n\t{/if}\n</div>\n\n<style>\n\t.headline {\n\t\tcolor: var(--labels-secondary);\n\t\tmargin: 0px 16px 10px;\n\t}\n\n\t.plain {\n\t\tdisplay: flex;\n\t\tjustify-content: space-between;\n\t\tmargin: 0px 16px 5px;\n\t}\n\n\t/* \t.title3-emphasized {\n\t\tmargin: 0px 16px 5px;\n\t} */\n\n\t.prominent {\n\t\tdisplay: flex;\n\t\tfont-size: 20px;\n\t\tfont-weight: 590;\n\t\tjustify-content: space-between;\n\t\tline-height: 25px;\n\t\tmargin: 0px 16px 8px;\n\t\ttext-size-adjust: none;\n\t}\n\n\t.detail {\n\t\tdisplay: flex;\n\t\tgap: 4px;\n\t}\n\n\t.body {\n\t\tcolor: var(--labels-secondary);\n\t}\n\n\t.symbol {\n\t\tcolor: var(--colors-accent);\n\t\tfont-feature-settings: 'ss15' on;\n\t\tfont-size: calc(19px * var(--small-symbol-font-size-multiplier));\n\t\tfont-weight: 590;\n\t\tline-height: 22px;\n\t}\n\n\t.list {\n\t\tborder-radius: 26px;\n\t\toverflow: hidden;\n\t}\n\n\t.footnote {\n\t\tcolor: var(--labels-secondary);\n\t\tmargin: 8px 16px 6px;\n\t}\n</style>\n"
+    }
+  ]
+}

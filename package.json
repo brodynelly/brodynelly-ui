@@ -1,0 +1,60 @@
+{
+	"name": "brodynelly-ui",
+	"version": "0.1.0",
+	"private": true,
+	"description": "Editable Svelte 5 components, copied into your project with the Brodynelly UI CLI.",
+	"type": "module",
+	"license": "MIT",
+	"author": "Brodynelly",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/brodynelly/brodynelly-ui.git"
+	},
+	"engines": {
+		"node": ">=20.19.0"
+	},
+	"bin": {
+		"brodynelly-ui": "bin/brodynelly-ui.mjs"
+	},
+	"files": [
+		"bin",
+		"cli",
+		"registry",
+		"LICENSE",
+		"NOTICE.md"
+	],
+	"scripts": {
+		"dev": "vite dev",
+		"preview": "vite preview",
+		"sync": "svelte-kit sync",
+		"site:build": "vite build",
+		"registry:build": "node scripts/build-registry.mjs",
+		"registry:check": "node scripts/build-registry.mjs --check",
+		"test": "vitest run",
+		"test:unit": "vitest",
+		"test:registry": "node --test tests/registry/*.test.mjs",
+		"test:installer": "node --test tests/cli/*.test.mjs",
+		"lint": "prettier --check . && eslint ."
+	},
+	"devDependencies": {
+		"@eslint/compat": "^1.2.5",
+		"@eslint/js": "^9.18.0",
+		"@sveltejs/adapter-auto": "^6.0.0",
+		"@sveltejs/kit": "^2.22.0",
+		"@sveltejs/vite-plugin-svelte": "^6.0.0",
+		"@vitest/browser": "^3.2.3",
+		"acorn": "^8.15.0",
+		"eslint": "^9.18.0",
+		"eslint-config-prettier": "^10.0.1",
+		"eslint-plugin-svelte": "^3.0.0",
+		"globals": "^16.0.0",
+		"playwright": "^1.53.0",
+		"prettier": "^3.4.2",
+		"prettier-plugin-svelte": "^3.3.3",
+		"svelte": "^5.0.0",
+		"typescript": "^5.3.2",
+		"vite": "^7.0.4",
+		"vitest": "^3.2.3",
+		"vitest-browser-svelte": "^0.1.0"
+	}
+}

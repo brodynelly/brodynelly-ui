@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "component",
+  "name": "sidebar",
+  "version": "0.1.0",
+  "exportName": "Sidebar",
+  "entry": "sidebar/Sidebar.svelte",
+  "requirements": {
+    "svelte": ">=5.20.0",
+    "materialSymbols": false,
+    "svgFilter": false
+  },
+  "files": [
+    {
+      "path": "sidebar/Sidebar.svelte",
+      "kind": "component",
+      "sha256": "b54043a33a8e66e8feae9ace1456d5c83c8351a52dda1123e809c6e0fe328793",
+      "content": "<script>\n\timport { onMount } from 'svelte';\n\n\texport let state = 'default';\n\t/* export let state = \"hidden\"; */\n\texport let id = undefined;\n\texport let style = undefined;\n\n\tlet windowHeight = undefined;\n\tlet windowWidth = undefined;\n\n\tlet heightStyle = '100vh';\n\tlet maxWidthStyle = '320px';\n\n\tlet backgroundHeightStyle = undefined;\n\tlet backgroundWidthStyle = undefined;\n\tlet backgroundDisplayStyle = undefined;\n\n\t$: {\n\t\tbackgroundHeightStyle = `${windowHeight}px`;\n\t\tbackgroundWidthStyle = `${windowHeight}px`;\n\t\theightStyle = `${windowHeight}px`;\n\n\t\tif (windowWidth > 809) {\n\t\t\tbackgroundDisplayStyle = 'none';\n\t\t\tif (state === 'default') {\n\t\t\t\tmaxWidthStyle = '320px';\n\t\t\t} else {\n\t\t\t\tmaxWidthStyle = '0px';\n\t\t\t}\n\t\t} else {\n\t\t\tif (state === 'default') {\n\t\t\t\tbackgroundDisplayStyle = 'unset';\n\t\t\t\tmaxWidthStyle = '320px';\n\t\t\t} else {\n\t\t\t\tbackgroundDisplayStyle = 'none';\n\t\t\t\tmaxWidthStyle = '0px';\n\t\t\t}\n\t\t}\n\t}\n\n\t$: {\n\t\tif (windowWidth <= 809) {\n\t\t\tstate = 'hidden';\n\t\t} else {\n\t\t\tstate = 'default';\n\t\t}\n\t}\n\n\tlet elementClass = 'default';\n\n\tonMount(() => {\n\t\tif (navigator.userAgent.includes('Win')) {\n\t\t\telementClass = 'windows';\n\t\t}\n\t});\n\n\tlet inputElement = undefined;\n\n\texport function handlePress() {\n\t\tif (state === 'default') {\n\t\t\tstate = 'hidden';\n\t\t} else {\n\t\t\tstate = 'default';\n\t\t}\n\t\tinputElement.blur();\n\t}\n</script>\n\n<svelte:window\n\tbind:innerHeight={windowHeight}\n\tbind:innerWidth={windowWidth}\n\ton:keydown={(e) => {\n\t\tif (e.key === 'Escape' && windowWidth <= 809) state = 'hidden';\n\t}}\n/>\n\n<aside\n\tclass={elementClass}\n\t{id}\n\tstyle=\"{style}; height: {heightStyle}; max-width: {maxWidthStyle}; transition: max-width 0.25s; -webkit-backdrop-filter: blur(50px)\"\n>\n\t<slot />\n</aside>\n<label\n\tstyle=\"display: {backgroundDisplayStyle}; height: {backgroundHeightStyle}; width: {backgroundWidthStyle}\"\n>\n\t<button\n\t\taria-label=\"Close sidebar\"\n\t\tbind:this={inputElement}\n\t\tclass=\"hidden-input\"\n\t\ton:click={handlePress}\n\t></button>\n</label>\n\n<style>\n\tlabel {\n\t\tcursor: unset;\n\t\theight: 100vh;\n\t\tleft: 0px;\n\t\tposition: fixed;\n\t\ttop: 0px;\n\t\twidth: 100vw;\n\t\tz-index: 1;\n\t}\n\n\taside {\n\t\tbackground-color: var(--bg-grouped-primary);\n\t\tbox-shadow: 0.5px 0px rgb(60, 60, 67, 0.36);\n\t\tfloat: left;\n\t\theight: 100vh;\n\t\toverflow-y: auto;\n\t\tposition: sticky;\n\t\ttop: 0px;\n\t\twidth: 100%;\n\t\tz-index: 2;\n\t}\n\n\t.windows::-webkit-scrollbar {\n\t\tdisplay: none;\n\t}\n\n\t@media (max-width: 809px) {\n\t\taside {\n\t\t\tbackdrop-filter: blur(50px);\n\t\t\tbackground: var(--materials-regular);\n\t\t\tbackground-blend-mode: var(--materials-background-blend-mode);\n\t\t\tfloat: unset;\n\t\t\tposition: fixed;\n\t\t\t-webkit-backdrop-filter: blur(50px);\n\t\t}\n\t}\n\n\t@media (prefers-color-scheme: dark) {\n\t\taside {\n\t\t\tbox-shadow: 0.5px 0px rgb(84, 84, 88, 0.65);\n\t\t}\n\t}\n</style>\n"
+    }
+  ]
+}

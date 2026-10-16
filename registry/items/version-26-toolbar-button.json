@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "component",
+  "name": "version-26-toolbar-button",
+  "version": "0.1.0",
+  "exportName": "Version26ToolbarButton",
+  "entry": "version-26-toolbar/Version26ToolbarButton.svelte",
+  "requirements": {
+    "svelte": ">=5.20.0",
+    "materialSymbols": true,
+    "svgFilter": true
+  },
+  "files": [
+    {
+      "path": "version-26-toolbar/Version26ToolbarButton.svelte",
+      "kind": "component",
+      "sha256": "2991bf0fda5b2d759604b16ce4dd853a436120679a8b33bf831a9f625dd91953",
+      "content": "<script>\n\texport let symbol = 'select';\n\n\texport let id = undefined;\n\texport let onPress = undefined;\n\texport let style = undefined;\n\n\tlet inputElement = undefined;\n\n\tfunction handlePress() {\n\t\tif (onPress) {\n\t\t\tonPress();\n\t\t}\n\t\tinputElement.blur();\n\t}\n</script>\n\n<button\n\tbind:this={inputElement}\n\tclass=\"liquid-glass liquid-glass-small\"\n\t{id}\n\ton:click={handlePress}\n\t{style}\n>\n\t<p class=\"symbol\">{symbol}</p>\n</button>\n\n<style>\n\tbutton {\n\t\talign-items: center;\n\t\tborder-radius: 50%;\n\t\tdisplay: flex;\n\t\theight: 48px;\n\t\tjustify-content: center;\n\t\twidth: 48px;\n\t}\n\n\tbutton::before {\n\t\tborder-radius: 50%;\n\t}\n\n\tbutton::after {\n\t\tborder-radius: 50%;\n\t}\n\n\t.symbol {\n\t\talign-items: center;\n\t\tcolor: var(--labels-primary);\n\t\tdisplay: flex;\n\t\tfont-feature-settings: 'ss16' on;\n\t\tfont-size: calc(17px * var(--large-symbol-font-size-multiplier));\n\t\tfont-weight: calc(400 / var(--large-symbol-font-size-multiplier));\n\t\tjustify-content: center;\n\t}\n\n\tbutton:active p {\n\t\topacity: var(--symbol-press-opacity) !important;\n\t\toutline: unset !important;\n\t}\n\n\tbutton:focus p {\n\t\tborder-radius: 5px;\n\t\toutline: 2px solid var(--colors-accent);\n\t\toutline-offset: 4px;\n\t}\n\n\tbutton:hover {\n\t\topacity: var(--hover-opacity);\n\t}\n</style>\n"
+    }
+  ]
+}

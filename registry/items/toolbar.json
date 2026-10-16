@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "component",
+  "name": "toolbar",
+  "version": "0.1.0",
+  "exportName": "Toolbar",
+  "entry": "toolbar/Toolbar.svelte",
+  "requirements": {
+    "svelte": ">=5.20.0",
+    "materialSymbols": false,
+    "svgFilter": false
+  },
+  "files": [
+    {
+      "path": "toolbar/Toolbar.svelte",
+      "kind": "component",
+      "sha256": "de3345446adb11ad13f296adbdfa18966a57bdb8bc5b3820978b621b635554d0",
+      "content": "<script>\n\texport let id = undefined;\n\texport let style = undefined;\n</script>\n\n<div {id} {style}>\n\t<slot />\n</div>\n\n<style>\n\tdiv {\n\t\tbackdrop-filter: blur(10px);\n\t\tbackground: var(--materials-chrome);\n\t\tbackground-blend-mode: var(--materials-chrome-background-blend-mode);\n\t\tbottom: 0px;\n\t\tbox-shadow: 0px -0.33px rgb(0, 0, 0, 0.3);\n\t\tdisplay: flex;\n\t\tjustify-content: space-between;\n\t\tpadding: 13px 16px 42px;\n\t\tposition: fixed;\n\t\t-webkit-backdrop-filter: blur(10px);\n\t}\n\n\t@media (prefers-color-scheme: dark) {\n\t\tdiv {\n\t\t\tbox-shadow: 0px -0.33px rgb(255, 255, 255, 0.15);\n\t\t}\n\t}\n</style>\n"
+    }
+  ]
+}

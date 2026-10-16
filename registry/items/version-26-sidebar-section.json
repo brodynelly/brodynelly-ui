@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "component",
+  "name": "version-26-sidebar-section",
+  "version": "0.1.0",
+  "exportName": "Version26SidebarSection",
+  "entry": "version-26-sidebar/Version26SidebarSection.svelte",
+  "requirements": {
+    "svelte": ">=5.20.0",
+    "materialSymbols": true,
+    "svgFilter": false
+  },
+  "files": [
+    {
+      "path": "version-26-sidebar/Version26SidebarSection.svelte",
+      "kind": "component",
+      "sha256": "15f2c112357e5722826f0057adfc3db35844ed03af4083332435d0cff1795e76",
+      "content": "<script>\n\texport let showHeading = false;\n\texport let heading = 'Section 1';\n\texport let state = 'open';\n\t/* export let state = \"closed\"; */\n\texport let symbol = 'arrow_forward_ios';\n\n\texport let id = undefined;\n\texport let style = undefined;\n\n\tlet borderBottomStyle = 'unset';\n\tlet rotateStyle = '0.5turn';\n\t$: {\n\t\tif (state === 'open') {\n\t\t\tborderBottomStyle = 'unset';\n\t\t\trotateStyle = '0.25turn';\n\t\t} else {\n\t\t\tborderBottomStyle = '0.33px solid var(--sidebar-section-border-bottom)';\n\t\t\trotateStyle = 'unset';\n\t\t}\n\t}\n\n\t/* Instead of using conditional rendering with {#if} conditions, set the slot's display property to none to retain the state of variables like state. */\n\tlet displayStyle = 'unset';\n\t$: {\n\t\tif (state === 'open') {\n\t\t\tdisplayStyle = 'unset';\n\t\t} else {\n\t\t\tdisplayStyle = 'none';\n\t\t}\n\t}\n\n\tlet inputElement = undefined;\n\n\tfunction handlePress() {\n\t\tif (state === 'open') {\n\t\t\tstate = 'closed';\n\t\t} else {\n\t\t\tstate = 'open';\n\t\t}\n\t\tinputElement.blur();\n\t}\n</script>\n\n<section>\n\t{#if showHeading}\n\t\t<label {id} style=\"{style}; border-bottom: {borderBottomStyle}\">\n\t\t\t<p class=\"body\">{heading}</p>\n\t\t\t<button\n\t\t\t\tbind:this={inputElement}\n\t\t\t\tclass=\"symbol\"\n\t\t\t\ton:click={handlePress}\n\t\t\t\tstyle=\"rotate: {rotateStyle}\"\n\t\t\t>\n\t\t\t\t{symbol}\n\t\t\t</button>\n\t\t</label>\n\t{/if}\n\t<div style=\"display: {displayStyle}\">\n\t\t<slot />\n\t</div>\n</section>\n\n<style>\n\t:root {\n\t\tcolor-scheme: light dark;\n\t\t--sidebar-section-border-bottom: rgb(60, 60, 67, 0.29);\n\t}\n\n\t@media (prefers-color-scheme: dark) {\n\t\t:root {\n\t\t\t--sidebar-section-border-bottom: rgb(84, 84, 88, 0.65);\n\t\t}\n\t}\n\n\tsection {\n\t\tpadding-top: 20px;\n\t}\n\n\tlabel {\n\t\talign-items: center;\n\t\tdisplay: flex;\n\t\tgap: 6px;\n\t\theight: 44px;\n\t\tjustify-content: space-between;\n\t\tmargin: 0px 16px;\n\t\tpadding: 0px 8px;\n\t}\n\n\tp {\n\t\tcolor: var(--labels-secondary);\n\t}\n\n\tbutton {\n\t\ttransition: rotate 0.25s;\n\t}\n\n\t.symbol {\n\t\tcolor: var(--labels-primary);\n\t\tfont-feature-settings: 'ss15' on;\n\t\tfont-size: calc(17px * var(--small-symbol-font-size-multiplier));\n\t\tfont-weight: calc(590 / var(--small-symbol-font-size-multiplier));\n\t\tline-height: 22px;\n\t}\n\n\tbutton:active {\n\t\topacity: var(--symbol-press-opacity) !important;\n\t\toutline: unset !important;\n\t}\n\n\tbutton:focus {\n\t\tborder-radius: 5px;\n\t\toutline: 2px solid var(--colors-accent);\n\t\toutline-offset: 4px;\n\t}\n\n\tbutton:hover {\n\t\topacity: var(--hover-opacity);\n\t}\n</style>\n"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "component",
+  "name": "segmented-control",
+  "version": "0.1.0",
+  "exportName": "SegmentedControl",
+  "entry": "segmented-control/SegmentedControl.svelte",
+  "requirements": {
+    "svelte": ">=5.20.0",
+    "materialSymbols": false,
+    "svgFilter": false
+  },
+  "files": [
+    {
+      "path": "segmented-control/SegmentedControl.svelte",
+      "kind": "component",
+      "sha256": "6ba0f528fe008bb909fa8f629a686dd97b57752c87a6095ea7948993dc2f48fb",
+      "content": "<script>\n\texport let id = undefined;\n\texport let style = undefined;\n</script>\n\n<div {id} {style}>\n\t<slot />\n</div>\n\n<style>\n\tdiv {\n\t\talign-items: center;\n\t\tbackground: var(--fills-tertiary);\n\t\tborder-radius: 9px;\n\t\tdisplay: flex;\n\t\theight: 24px;\n\t\toverflow: hidden;\n\t\tpadding: 2px;\n\t}\n</style>\n"
+    }
+  ]
+}

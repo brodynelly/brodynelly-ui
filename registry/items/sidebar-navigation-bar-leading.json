@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "component",
+  "name": "sidebar-navigation-bar-leading",
+  "version": "0.1.0",
+  "exportName": "SidebarNavigationBarLeading",
+  "entry": "sidebar/SidebarNavigationBarLeading.svelte",
+  "requirements": {
+    "svelte": ">=5.20.0",
+    "materialSymbols": true,
+    "svgFilter": false
+  },
+  "files": [
+    {
+      "path": "sidebar/SidebarNavigationBarLeading.svelte",
+      "kind": "component",
+      "sha256": "9b368c104c9d168d5050c50bf9c5d70a7407f4f022137d7aadd48b9a80a9694d",
+      "content": "<script>\n\texport let state = 'enabled';\n\t/* export let state = \"disabled\"; */\n\texport let type = 'symbol';\n\t/* export let type = \"label\"; */\n\t/* export let type = \"label-emphasized\"; */\n\texport let symbol = 'select';\n\texport let label = 'Label';\n\n\texport let id = undefined;\n\texport let onPress = undefined;\n\texport let style = undefined;\n\n\texport let colorStyle = 'unset';\n\tif (state === 'enabled') {\n\t\tcolorStyle = 'var(--colors-accent)';\n\t} else {\n\t\tcolorStyle = 'var(--labels-quaternary)';\n\t}\n\n\tif (state === 'disabled') {\n\t\tonPress = undefined;\n\t}\n\n\tlet inputElement = undefined;\n\n\tfunction handlePress() {\n\t\tif (onPress) {\n\t\t\tonPress();\n\t\t}\n\t\tinputElement.blur();\n\t}\n</script>\n\n{#if type === 'symbol'}\n\t<button\n\t\tbind:this={inputElement}\n\t\tclass=\"symbol\"\n\t\t{id}\n\t\ton:click={handlePress}\n\t\tstyle=\"{style}; color: {colorStyle}\">{symbol}</button\n\t>\n{:else if type === 'label'}\n\t<button\n\t\tbind:this={inputElement}\n\t\tclass=\"body\"\n\t\t{id}\n\t\ton:click={handlePress}\n\t\tstyle=\"{style}; color: {colorStyle}\">{label}</button\n\t>\n{:else}\n\t<button\n\t\tbind:this={inputElement}\n\t\tclass=\"body-emphasized\"\n\t\t{id}\n\t\ton:click={handlePress}\n\t\tstyle=\"{style}; color: {colorStyle}\">{label}</button\n\t>\n{/if}\n\n<style>\n\t.symbol {\n\t\tfont-feature-settings: 'ss16' on;\n\t\tfont-size: calc(17px * var(--large-symbol-font-size-multiplier));\n\t\tfont-weight: calc(400 / var(--large-symbol-font-size-multiplier));\n\t\tline-height: 22px;\n\t}\n\n\tbutton:active {\n\t\topacity: var(--symbol-press-opacity) !important;\n\t\toutline: unset !important;\n\t}\n\n\tbutton:focus {\n\t\tborder-radius: 5px;\n\t\toutline: 2px solid var(--colors-accent);\n\t\toutline-offset: 4px;\n\t}\n\n\tbutton:hover {\n\t\topacity: var(--hover-opacity);\n\t}\n</style>\n"
+    }
+  ]
+}

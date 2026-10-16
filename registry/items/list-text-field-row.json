@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "component",
+  "name": "list-text-field-row",
+  "version": "0.1.0",
+  "exportName": "ListTextFieldRow",
+  "entry": "list/ListTextFieldRow.svelte",
+  "requirements": {
+    "svelte": ">=5.20.0",
+    "materialSymbols": false,
+    "svgFilter": false
+  },
+  "files": [
+    {
+      "path": "list/ListTextFieldRow.svelte",
+      "kind": "component",
+      "sha256": "2344c57fd36a05094699b9e6b33183458f8911d51e5f644eb9ad7130a8c2ed75",
+      "content": "<script>\n\texport let value = undefined;\n\texport let title = 'Title';\n\texport let placeholder = 'Value';\n\n\texport let id = undefined;\n\texport let onPress = undefined;\n\texport let style = undefined;\n</script>\n\n<label {style}>\n\t<div>\n\t\t<p class=\"body\">{title}</p>\n\t\t<input bind:value class=\"body\" {id} on:click={onPress} {placeholder} type=\"text\" />\n\t</div>\n</label>\n\n<style>\n\tlabel {\n\t\talign-items: center;\n\t\tbackground: var(--bg-grouped-secondary);\n\t\tdisplay: flex;\n\t\theight: 44px;\n\t\tpadding-left: 16px;\n\t}\n\n\tdiv {\n\t\talign-items: center;\n\t\tborder-bottom: 0.33px solid var(--separators-non-opaque);\n\t\tdisplay: flex;\n\t\tflex: 1;\n\t\theight: 100%;\n\t\tpadding-right: 16px;\n\t}\n\n\tp {\n\t\twidth: 100px;\n\t}\n\n\tinput {\n\t\twidth: 100%;\n\t}\n\n\tinput::placeholder {\n\t\tcolor: var(--labels-secondary);\n\t}\n\n\tlabel:last-child > div {\n\t\tborder-bottom: unset;\n\t}\n</style>\n"
+    }
+  ]
+}

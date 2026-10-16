@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "component",
+  "name": "version-26-list-slider-row",
+  "version": "0.1.0",
+  "exportName": "Version26ListSliderRow",
+  "entry": "version-26-list/Version26ListSliderRow.svelte",
+  "requirements": {
+    "svelte": ">=5.20.0",
+    "materialSymbols": true,
+    "svgFilter": false
+  },
+  "files": [
+    {
+      "path": "version-26-list/Version26ListSliderRow.svelte",
+      "kind": "component",
+      "sha256": "35b7aa36416e2f2e63696d8cdaaaead4c08366ab71e5938761d2d762f48b45b4",
+      "content": "<script>\n\texport let value = undefined;\n\texport let min = '0';\n\texport let max = '100';\n\texport let showSymbols = false;\n\texport let minSymbol = 'wb_sunny';\n\texport let maxSymbol = 'sunny';\n\n\texport let id = undefined;\n\texport let style = undefined;\n\n\tlet inputElement = undefined;\n\n\tfunction handlePress() {\n\t\tinputElement.blur();\n\t}\n</script>\n\n<label {style}>\n\t<div>\n\t\t{#if showSymbols}\n\t\t\t<p class=\"symbol\">{minSymbol}</p>\n\t\t{/if}\n\t\t<input\n\t\t\tbind:this={inputElement}\n\t\t\tbind:value\n\t\t\tclass=\"body\"\n\t\t\t{id}\n\t\t\t{max}\n\t\t\t{min}\n\t\t\ton:click={handlePress}\n\t\t\ttype=\"range\"\n\t\t/>\n\t\t{#if showSymbols}\n\t\t\t<p class=\"symbol\">{maxSymbol}</p>\n\t\t{/if}\n\t</div>\n</label>\n\n<style>\n\tlabel {\n\t\talign-items: center;\n\t\tbackground: var(--bg-grouped-secondary);\n\t\tdisplay: flex;\n\t\theight: 52px;\n\t\tpadding-left: 16px;\n\t}\n\n\tdiv {\n\t\talign-items: center;\n\t\tbox-shadow: 0px 0.5px var(--separators-non-opaque);\n\t\tdisplay: flex;\n\t\tflex: 1;\n\t\tflex-direction: row;\n\t\tgap: 12px;\n\t\theight: 100%;\n\t\tpadding-right: 16px;\n\t}\n\n\t.symbol {\n\t\talign-items: center;\n\t\tcolor: var(--labels-secondary);\n\t\tdisplay: flex;\n\t\tfont-size: calc(17px * var(--medium-symbol-font-size-multiplier));\n\t\tfont-weight: calc(590 / var(--medium-symbol-font-size-multiplier));\n\t\theight: 22px;\n\t\tjustify-content: center;\n\t\tline-height: 22px;\n\t\twidth: 22px;\n\t}\n\n\tinput[type='range'] {\n\t\tappearance: none;\n\t\talign-items: center;\n\t\tborder-radius: 6px;\n\t\tbackground: var(--fills-secondary);\n\t\tcursor: pointer;\n\t\tdisplay: flex;\n\t\theight: 6px;\n\t\twidth: 100%;\n\t}\n\n\tinput[type='range']::-moz-range-thumb {\n\t\tappearance: none;\n\t\tbackground: var(--grays-white);\n\t\tborder: none;\n\t\tborder-radius: 24px;\n\t\tbox-shadow:\n\t\t\t0px 6px 13px rgb(0, 0, 0, 0.12),\n\t\t\t0px 0.5px 4px rgb(0, 0, 0, 0.12);\n\t\theight: 24px;\n\t\twidth: 38px;\n\t}\n\n\tinput[type='range']::-webkit-slider-thumb {\n\t\tappearance: none;\n\t\tbackground: var(--grays-white);\n\t\tborder-radius: 24px;\n\t\tbox-shadow:\n\t\t\t0px 6px 13px rgb(0, 0, 0, 0.12),\n\t\t\t0px 0.5px 4px rgb(0, 0, 0, 0.12);\n\t\theight: 24px;\n\t\twidth: 38px;\n\t}\n\n\tinput[type='range']::-moz-range-progress {\n\t\tappearance: none;\n\t\tborder-radius: 6px;\n\t\tbackground: var(--colors-accent);\n\t\tcursor: pointer;\n\t\theight: 6px;\n\t\twidth: 100%;\n\t}\n\n\tlabel:last-child > div {\n\t\tbox-shadow: unset;\n\t}\n\n\tinput[type='range']:active::-moz-range-thumb,\n\tinput[type='range']:active::-webkit-slider-thumb {\n\t\tbackground: var(--grays-white) !important;\n\t\toutline: unset !important;\n\t}\n\n\tinput[type='range']:focus::-moz-range-thumb,\n\tinput[type='range']:focus::-webkit-slider-thumb {\n\t\tbackground:\n\t\t\tlinear-gradient(var(--colors-accent-2) 0%, var(--colors-accent-2)), var(--grays-white);\n\t\toutline: 2px solid var(--colors-accent);\n\t\toutline-offset: -2px;\n\t}\n</style>\n"
+    }
+  ]
+}

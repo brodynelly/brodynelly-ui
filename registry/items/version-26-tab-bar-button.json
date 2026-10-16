@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "component",
+  "name": "version-26-tab-bar-button",
+  "version": "0.1.0",
+  "exportName": "Version26TabBarButton",
+  "entry": "version-26-tab-bar/Version26TabBarButton.svelte",
+  "requirements": {
+    "svelte": ">=5.20.0",
+    "materialSymbols": true,
+    "svgFilter": false
+  },
+  "files": [
+    {
+      "path": "version-26-tab-bar/Version26TabBarButton.svelte",
+      "kind": "component",
+      "sha256": "44315aa14921da4e3237cbc75eff974d7661765fb75995e30e47778924577d6a",
+      "content": "<script>\n\texport let behavior = 'default';\n\t/* export let behavior = 'hyperlink'; */\n\texport let href = '/';\n\texport let inputGroup = 'tab-bar-button';\n\texport let state = 'default';\n\t/* export let state = \"selected\"; */\n\texport let symbol = 'star';\n\texport let label = 'Tab';\n\n\texport let id = undefined;\n\texport let onPress = undefined;\n\texport let style = undefined;\n\n\tlet inputElement = undefined;\n\n\tfunction handlePress() {\n\t\tif (onPress) {\n\t\t\tonPress();\n\t\t}\n\t\tif (behavior === 'hyperlink') {\n\t\t\tlet anchor = document.createElement('a');\n\t\t\tanchor.href = href;\n\t\t\tanchor.classList.add('hidden-input');\n\t\t\tdocument.body.appendChild(anchor);\n\t\t\tanchor.click();\n\t\t}\n\t\tinputElement.blur();\n\t}\n</script>\n\n<label {style}>\n\t{#if state === 'selected'}\n\t\t<input\n\t\t\tbind:this={inputElement}\n\t\t\tchecked\n\t\t\tclass=\"hidden-input\"\n\t\t\t{id}\n\t\t\tname={inputGroup}\n\t\t\ton:click={handlePress}\n\t\t\ttype=\"radio\"\n\t\t/>\n\t{:else}\n\t\t<input\n\t\t\tbind:this={inputElement}\n\t\t\tclass=\"hidden-input\"\n\t\t\t{id}\n\t\t\tname={inputGroup}\n\t\t\ton:click={handlePress}\n\t\t\ttype=\"radio\"\n\t\t/>\n\t{/if}\n\t<div>\n\t\t<p class=\"symbol\">{symbol}</p>\n\t\t<p class=\"label\">{label}</p>\n\t</div>\n</label>\n\n<style>\n\tlabel {\n\t\talign-items: center;\n\t\tborder-radius: 58px;\n\t\tdisplay: flex;\n\t\tflex-direction: column;\n\t\t/* min-width: 102px; */\n\t\tpadding: 6px 8px 7px;\n\t\twidth: 100%;\n\t}\n\n\tlabel:has(input:checked) {\n\t\tbackground: var(--fills-tertiary);\n\t}\n\n\t/* label:first-child {\n\t\talign-items: start;\n\t\twidth: calc(24px + 50%);\n\t}\n\n\tlabel:last-child {\n\t\talign-items: end;\n\t\twidth: calc(24px + 50%);\n\t} */\n\n\tdiv {\n\t\talign-items: center;\n\t\tdisplay: flex;\n\t\tflex-direction: column;\n\t\tgap: 1px;\n\t\twidth: 48px;\n\t}\n\n\tinput:checked ~ div > p {\n\t\tcolor: var(--colors-accent);\n\t}\n\n\t.symbol {\n\t\tcolor: var(--labels-primary);\n\t\tfont-size: calc(18px * var(--medium-symbol-font-size-multiplier));\n\t\tfont-weight: calc(510 / var(--medium-symbol-font-size-multiplier));\n\t}\n\n\t.label {\n\t\tcolor: var(--labels-primary);\n\t\tfont-size: 10px;\n\t\tfont-weight: 510;\n\t}\n\n\tinput:active ~ div > p {\n\t\topacity: var(--symbol-press-opacity) !important;\n\t}\n\n\tinput:active ~ div > .symbol {\n\t\toutline: unset !important;\n\t}\n\n\tinput:focus ~ div > .symbol {\n\t\tborder-radius: 5px;\n\t\toutline: 2px solid var(--colors-accent);\n\t\toutline-offset: 2px;\n\t}\n\n\tlabel:hover {\n\t\topacity: var(--hover-opacity);\n\t}\n</style>\n"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "component",
+  "name": "toolbar-button",
+  "version": "0.1.0",
+  "exportName": "ToolbarButton",
+  "entry": "toolbar/ToolbarButton.svelte",
+  "requirements": {
+    "svelte": ">=5.20.0",
+    "materialSymbols": true,
+    "svgFilter": false
+  },
+  "files": [
+    {
+      "path": "toolbar/ToolbarButton.svelte",
+      "kind": "component",
+      "sha256": "abb74a9cbf16e2b1f53d455603b0b558fbedf8ddd3530bc76398e88e1a656f9c",
+      "content": "<script>\n\texport let type = 'symbol';\n\t/* export let type = \"label\"; */\n\texport let symbol = 'select';\n\texport let label = 'Action';\n\n\texport let id = undefined;\n\texport let onPress = undefined;\n\texport let style = undefined;\n\n\tlet inputElement = undefined;\n\n\tfunction handlePress() {\n\t\tif (onPress) {\n\t\t\tonPress();\n\t\t}\n\t\tinputElement.blur();\n\t}\n</script>\n\n<button bind:this={inputElement} {id} on:click={handlePress} {style}>\n\t{#if type === 'symbol'}\n\t\t<p class=\"symbol\">{symbol}</p>\n\t{:else}\n\t\t<p class=\"label body\">{label}</p>\n\t{/if}\n</button>\n\n<style>\n\t.symbol {\n\t\talign-items: center;\n\t\tcolor: var(--colors-accent);\n\t\tdisplay: flex;\n\t\tfont-feature-settings: 'ss16' on;\n\t\tfont-size: calc(17px * var(--large-symbol-font-size-multiplier));\n\t\tfont-weight: calc(400 / var(--large-symbol-font-size-multiplier));\n\t\theight: 28px;\n\t\tjustify-content: center;\n\t\twidth: 28px;\n\t}\n\n\t.label {\n\t\tcolor: var(--colors-accent);\n\t}\n\n\tbutton:active p {\n\t\topacity: var(--symbol-press-opacity) !important;\n\t\toutline: unset !important;\n\t}\n\n\tbutton:focus p {\n\t\tborder-radius: 5px;\n\t\toutline: 2px solid var(--colors-accent);\n\t\toutline-offset: 4px;\n\t}\n\n\tbutton:hover {\n\t\topacity: var(--hover-opacity);\n\t}\n</style>\n"
+    }
+  ]
+}

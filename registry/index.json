@@ -1,0 +1,593 @@
+{
+  "schemaVersion": 1,
+  "name": "brodynelly-ui",
+  "version": "0.1.0",
+  "sourceFingerprint": "135b4b38f6a5daa7b5a4c8c80c9824e772a94cf3000c0bf2d64e2dadeecd7d21",
+  "base": {
+    "payload": "base.json",
+    "sha256": "e00260d937069b411a8f314364789abb4e0ce628a0428cda2fe19b30abb1a391"
+  },
+  "items": [
+    {
+      "name": "action-sheet",
+      "exportName": "ActionSheet",
+      "entry": "action-sheet/ActionSheet.svelte",
+      "payload": "items/action-sheet.json",
+      "sha256": "86a4b2abdc27c0d942f56d99c40afc372101f6cf7cdd57e28912bce67ead891b"
+    },
+    {
+      "name": "action-sheet-button",
+      "exportName": "ActionSheetButton",
+      "entry": "action-sheet/ActionSheetButton.svelte",
+      "payload": "items/action-sheet-button.json",
+      "sha256": "a1374e9b2e8070b65bda152214442447a59817b5027dc4c8375172621f44a938"
+    },
+    {
+      "name": "alert",
+      "exportName": "Alert",
+      "entry": "alert/Alert.svelte",
+      "payload": "items/alert.json",
+      "sha256": "2701864fbdb02e781cfe56ac0092311151bfb71b39887684c5afe49a30a86938"
+    },
+    {
+      "name": "alert-button",
+      "exportName": "AlertButton",
+      "entry": "alert/AlertButton.svelte",
+      "payload": "items/alert-button.json",
+      "sha256": "abcb7bdc101e3dd750e5f86caba4d7e44874341f77bc4aaf0d9afd99a79b6379"
+    },
+    {
+      "name": "alert-text-field",
+      "exportName": "AlertTextField",
+      "entry": "alert/AlertTextField.svelte",
+      "payload": "items/alert-text-field.json",
+      "sha256": "77472e805f33d120bc2c5047853a379e8261de2a69a8b0f1c25ab6ed8b8e6067"
+    },
+    {
+      "name": "button",
+      "exportName": "Button",
+      "entry": "button/Button.svelte",
+      "payload": "items/button.json",
+      "sha256": "a43530d1f1ce418ff518e05530f22c7ebcd5e0692b705d7c4b5264b15f68e7fa"
+    },
+    {
+      "name": "collection",
+      "exportName": "Collection",
+      "entry": "collection/Collection.svelte",
+      "payload": "items/collection.json",
+      "sha256": "c38b1dfba6762af645cb98360020346ca5fbc55da5655761cdb2c1240503dbc6"
+    },
+    {
+      "name": "empty-state",
+      "exportName": "EmptyState",
+      "entry": "empty-state/EmptyState.svelte",
+      "payload": "items/empty-state.json",
+      "sha256": "f296c90406713579d0b0496b76841a2c57eb6d6d7220829996331d3e1fff1ceb"
+    },
+    {
+      "name": "list",
+      "exportName": "List",
+      "entry": "list/List.svelte",
+      "payload": "items/list.json",
+      "sha256": "5194caee880805245ad6a69608fe968a5095525f73f6104127c27cf2577da26b"
+    },
+    {
+      "name": "list-button-row",
+      "exportName": "ListButtonRow",
+      "entry": "list/ListButtonRow.svelte",
+      "payload": "items/list-button-row.json",
+      "sha256": "7d6f907b13bd639db6cd54017c5cd33d22386ea2cec3cc21ef0425bbdb8885d3"
+    },
+    {
+      "name": "list-row",
+      "exportName": "ListRow",
+      "entry": "list/ListRow.svelte",
+      "payload": "items/list-row.json",
+      "sha256": "65bf30e267267a2a792b28fcde79ca9d09c775cfc50b9cdfcdcb9fd3db7c1b6d"
+    },
+    {
+      "name": "list-row-button-trailing",
+      "exportName": "ListRowButtonTrailing",
+      "entry": "list/ListRowButtonTrailing.svelte",
+      "payload": "items/list-row-button-trailing.json",
+      "sha256": "4c908e68bfb67adc98542305b11f64becf879eeaf54a65dfe14d6d30200f12d2"
+    },
+    {
+      "name": "list-row-default-trailing",
+      "exportName": "ListRowDefaultTrailing",
+      "entry": "list/ListRowDefaultTrailing.svelte",
+      "payload": "items/list-row-default-trailing.json",
+      "sha256": "b22b0d40b5de2d838467014b3f013fe7c3225b25a819c3d594ce02cedb1a652b"
+    },
+    {
+      "name": "list-row-disclosure-trailing",
+      "exportName": "ListRowDisclosureTrailing",
+      "entry": "list/ListRowDisclosureTrailing.svelte",
+      "payload": "items/list-row-disclosure-trailing.json",
+      "sha256": "b5af235e30aaee830531de61365909131481dc5fd793c7e49f8e6ae95002bb25"
+    },
+    {
+      "name": "list-row-image",
+      "exportName": "ListRowImage",
+      "entry": "list/ListRowImage.svelte",
+      "payload": "items/list-row-image.json",
+      "sha256": "e52d01b2a1d17870460ac536205fbe525d8be82ffc65a63f5db7728ff46b44b7"
+    },
+    {
+      "name": "list-row-stepper-trailing",
+      "exportName": "ListRowStepperTrailing",
+      "entry": "list/ListRowStepperTrailing.svelte",
+      "payload": "items/list-row-stepper-trailing.json",
+      "sha256": "20fb60c79783ca89c9f2299c637af74fe58b21c037cce738152c24096458908f"
+    },
+    {
+      "name": "list-row-toggle-trailing",
+      "exportName": "ListRowToggleTrailing",
+      "entry": "list/ListRowToggleTrailing.svelte",
+      "payload": "items/list-row-toggle-trailing.json",
+      "sha256": "a6ff25f3e6a4248d056232015a3f92b29f099c15653fbeba9cc4d3747f2713aa"
+    },
+    {
+      "name": "list-slider-row",
+      "exportName": "ListSliderRow",
+      "entry": "list/ListSliderRow.svelte",
+      "payload": "items/list-slider-row.json",
+      "sha256": "87aaca56d5a85d88934af04cb771a976fc0b19e7099fd9fe35e451435633ab93"
+    },
+    {
+      "name": "list-text-field-row",
+      "exportName": "ListTextFieldRow",
+      "entry": "list/ListTextFieldRow.svelte",
+      "payload": "items/list-text-field-row.json",
+      "sha256": "bc15d3cf33e4b29b0e5f18a8573bfa451284fda24ac58e32696a9c22c331af14"
+    },
+    {
+      "name": "menu",
+      "exportName": "Menu",
+      "entry": "menu/Menu.svelte",
+      "payload": "items/menu.json",
+      "sha256": "75f9a0ca7dd969a0c204092c497082a2cc2884365ca55ba967d2c49ec93149dc"
+    },
+    {
+      "name": "menu-item",
+      "exportName": "MenuItem",
+      "entry": "menu/MenuItem.svelte",
+      "payload": "items/menu-item.json",
+      "sha256": "c94752bfc324c04e9203a752fe5e03be713d9c9130cb7cb01f18452ac9ba0c9e"
+    },
+    {
+      "name": "navigation-bar",
+      "exportName": "NavigationBar",
+      "entry": "navigation-bar/NavigationBar.svelte",
+      "payload": "items/navigation-bar.json",
+      "sha256": "033db2420893b966a767f24379579a3c35c73aea045d761e70099ad414e40e5d"
+    },
+    {
+      "name": "navigation-bar-leading",
+      "exportName": "NavigationBarLeading",
+      "entry": "navigation-bar/NavigationBarLeading.svelte",
+      "payload": "items/navigation-bar-leading.json",
+      "sha256": "d3b7aab6b3f6f601b6d541d1d4cada67081043156d2b108e843a84e211a17ad2"
+    },
+    {
+      "name": "navigation-bar-search-field",
+      "exportName": "NavigationBarSearchField",
+      "entry": "navigation-bar/NavigationBarSearchField.svelte",
+      "payload": "items/navigation-bar-search-field.json",
+      "sha256": "57a9b9514ea44af57de906039b3f717e161a123656b2d846f8ff2b96beb9a107"
+    },
+    {
+      "name": "navigation-bar-trailing",
+      "exportName": "NavigationBarTrailing",
+      "entry": "navigation-bar/NavigationBarTrailing.svelte",
+      "payload": "items/navigation-bar-trailing.json",
+      "sha256": "167e5da267dfdf5f8303e9761111316500b7babc6037b23a559df22ab155182c"
+    },
+    {
+      "name": "page-control",
+      "exportName": "PageControl",
+      "entry": "page-control/PageControl.svelte",
+      "payload": "items/page-control.json",
+      "sha256": "371d773f32e76a9580c7e858065492bde26fb421ef1761cd14cfb0d7b331c31d"
+    },
+    {
+      "name": "page-control-button",
+      "exportName": "PageControlButton",
+      "entry": "page-control/PageControlButton.svelte",
+      "payload": "items/page-control-button.json",
+      "sha256": "19e3f281e429ee6b4f8e465e1d02de31fc2bdda0673f2ddc440139edd0887f05"
+    },
+    {
+      "name": "progress-bar",
+      "exportName": "ProgressBar",
+      "entry": "progress-bar/ProgressBar.svelte",
+      "payload": "items/progress-bar.json",
+      "sha256": "5cd481a8cdb6c398f0590b8e738309692f3073a74e05e366a5571812a8ea38f7"
+    },
+    {
+      "name": "regular-progress-indicator",
+      "exportName": "RegularProgressIndicator",
+      "entry": "progress-indicator/RegularProgressIndicator.svelte",
+      "payload": "items/regular-progress-indicator.json",
+      "sha256": "b9f382cc2af77f5e88e9be0bdec624fe4e11355ddbf20d5045cec674c88f6264"
+    },
+    {
+      "name": "search-field",
+      "exportName": "SearchField",
+      "entry": "controls/SearchField.svelte",
+      "payload": "items/search-field.json",
+      "sha256": "172f84f156605d5ab1b7c27b452fbdec7e1b41b074e81b188b21a74a7c444567"
+    },
+    {
+      "name": "segmented-control",
+      "exportName": "SegmentedControl",
+      "entry": "segmented-control/SegmentedControl.svelte",
+      "payload": "items/segmented-control.json",
+      "sha256": "c7e8dc97cb2088bb8c698c3eb673db0a2bf3382c46c244a2597665fdd9d74fad"
+    },
+    {
+      "name": "segmented-control-button",
+      "exportName": "SegmentedControlButton",
+      "entry": "segmented-control/SegmentedControlButton.svelte",
+      "payload": "items/segmented-control-button.json",
+      "sha256": "cde413c65b018de22044155906615b572c20399953f719c8a22ba0e5f6d010e8"
+    },
+    {
+      "name": "sheet",
+      "exportName": "Sheet",
+      "entry": "sheet/Sheet.svelte",
+      "payload": "items/sheet.json",
+      "sha256": "260abfd4d45602278ed54642d0ddf348472bc0335eddeb189af81ad3da03c723"
+    },
+    {
+      "name": "sidebar",
+      "exportName": "Sidebar",
+      "entry": "sidebar/Sidebar.svelte",
+      "payload": "items/sidebar.json",
+      "sha256": "1b5389807435dcd13532202ad32336d9a7ba4b6723e175836db3d5dac9946998"
+    },
+    {
+      "name": "sidebar-navigation-bar",
+      "exportName": "SidebarNavigationBar",
+      "entry": "sidebar/SidebarNavigationBar.svelte",
+      "payload": "items/sidebar-navigation-bar.json",
+      "sha256": "cd64f73414a5ff66c018e3670d794a2971f9c62b2b11f4724250b2cd5df26b6a"
+    },
+    {
+      "name": "sidebar-navigation-bar-leading",
+      "exportName": "SidebarNavigationBarLeading",
+      "entry": "sidebar/SidebarNavigationBarLeading.svelte",
+      "payload": "items/sidebar-navigation-bar-leading.json",
+      "sha256": "177dc3fff6f6ba2b1f33ab51210c95a7009f08213cabfe0a15137ac49fa820b7"
+    },
+    {
+      "name": "sidebar-navigation-bar-trailing",
+      "exportName": "SidebarNavigationBarTrailing",
+      "entry": "sidebar/SidebarNavigationBarTrailing.svelte",
+      "payload": "items/sidebar-navigation-bar-trailing.json",
+      "sha256": "8e4d8e7be8e101e7f0d6e4aaf52a6f6ab5cbf7b9f2357b6585d5e0c4accd0c51"
+    },
+    {
+      "name": "sidebar-section",
+      "exportName": "SidebarSection",
+      "entry": "sidebar/SidebarSection.svelte",
+      "payload": "items/sidebar-section.json",
+      "sha256": "824eda1ff447a5dd092050ecd7fd85ba83679e0bf2b91422823d2354eed15e41"
+    },
+    {
+      "name": "sidebar-section-add-item-button",
+      "exportName": "SidebarSectionAddItemButton",
+      "entry": "sidebar/SidebarSectionAddItemButton.svelte",
+      "payload": "items/sidebar-section-add-item-button.json",
+      "sha256": "655d27bc78cce9d6d8bc4d2bae958938433339bbd756d522fa65e9f6996c110e"
+    },
+    {
+      "name": "sidebar-section-item",
+      "exportName": "SidebarSectionItem",
+      "entry": "sidebar/SidebarSectionItem.svelte",
+      "payload": "items/sidebar-section-item.json",
+      "sha256": "a93c32afc4e5b3b5cbcbf3ecf6ca8ff8391a98330360d4a27ec9872e4040b8e5"
+    },
+    {
+      "name": "slider",
+      "exportName": "Slider",
+      "entry": "controls/Slider.svelte",
+      "payload": "items/slider.json",
+      "sha256": "7feb5c8c6bef7a337d1f3c93ca4d23ccb5c2269853eacab018a6cd45035b2aee"
+    },
+    {
+      "name": "small-progress-indicator",
+      "exportName": "SmallProgressIndicator",
+      "entry": "progress-indicator/SmallProgressIndicator.svelte",
+      "payload": "items/small-progress-indicator.json",
+      "sha256": "65013f22a4185c8751aa4f7c836b6cb3446b71142be9d5c8f19bb7055fda5b13"
+    },
+    {
+      "name": "split-view",
+      "exportName": "SplitView",
+      "entry": "split-view/SplitView.svelte",
+      "payload": "items/split-view.json",
+      "sha256": "444a9374c1622583de791b4d3f96e02aa2b903e10e51a0edbbb5b948b5ab3d4f"
+    },
+    {
+      "name": "stepper",
+      "exportName": "Stepper",
+      "entry": "controls/Stepper.svelte",
+      "payload": "items/stepper.json",
+      "sha256": "31b49b264b3983debe7b2ecc13db1f95045f97fa21c41594e944a370ea6149a4"
+    },
+    {
+      "name": "switch",
+      "exportName": "Switch",
+      "entry": "controls/Switch.svelte",
+      "payload": "items/switch.json",
+      "sha256": "e5f1f788f0b954e5325ff54e869f4bbe7e2ce1460cbb5c7acb7a0c9f30e15cd0"
+    },
+    {
+      "name": "tab-bar",
+      "exportName": "TabBar",
+      "entry": "tab-bar/TabBar.svelte",
+      "payload": "items/tab-bar.json",
+      "sha256": "1619ee50d81901eccd827da715ad0c21ab006c9a53bb9f4d59add2c36e3f7d30"
+    },
+    {
+      "name": "tab-bar-button",
+      "exportName": "TabBarButton",
+      "entry": "tab-bar/TabBarButton.svelte",
+      "payload": "items/tab-bar-button.json",
+      "sha256": "4f96640885f9baa04aee153c2d6fbe4c3e75f07c69e8eea53507b5eaad1d3d8e"
+    },
+    {
+      "name": "toolbar",
+      "exportName": "Toolbar",
+      "entry": "toolbar/Toolbar.svelte",
+      "payload": "items/toolbar.json",
+      "sha256": "b3a360eb519a992b1557e9b59c2cd127ed2381025e091b1f936dca20b2b8537d"
+    },
+    {
+      "name": "toolbar-button",
+      "exportName": "ToolbarButton",
+      "entry": "toolbar/ToolbarButton.svelte",
+      "payload": "items/toolbar-button.json",
+      "sha256": "c7ae6ad5fd3c37a5f5a760aa48403f98125abb3826a6ad3afed97472c1807553"
+    },
+    {
+      "name": "version-26-action-sheet",
+      "exportName": "Version26ActionSheet",
+      "entry": "version-26-action-sheet/Version26ActionSheet.svelte",
+      "payload": "items/version-26-action-sheet.json",
+      "sha256": "0911108d9b9350779a19f8d1a6709a4886f987a26fe62fd40420059c279c29ca"
+    },
+    {
+      "name": "version-26-action-sheet-button",
+      "exportName": "Version26ActionSheetButton",
+      "entry": "version-26-action-sheet/Version26ActionSheetButton.svelte",
+      "payload": "items/version-26-action-sheet-button.json",
+      "sha256": "4705a3adbc83a4eade766410a5d65893f97d45cafeabe8917b4c44fae0e896a2"
+    },
+    {
+      "name": "version-26-alert",
+      "exportName": "Version26Alert",
+      "entry": "version-26-alert/Version26Alert.svelte",
+      "payload": "items/version-26-alert.json",
+      "sha256": "568120936e41d62e153a65abe943252854cc17ed59cb69ad96ed44b1a8fd0da0"
+    },
+    {
+      "name": "version-26-alert-button",
+      "exportName": "Version26AlertButton",
+      "entry": "version-26-alert/Version26AlertButton.svelte",
+      "payload": "items/version-26-alert-button.json",
+      "sha256": "22ee6f50e7f63a539d80e626971dce0a3a3685f2294cbbe77b644eb1ee1015ec"
+    },
+    {
+      "name": "version-26-alert-text-field",
+      "exportName": "Version26AlertTextField",
+      "entry": "version-26-alert/Version26AlertTextField.svelte",
+      "payload": "items/version-26-alert-text-field.json",
+      "sha256": "7b409ca7aff953ea140a8d07448f78fbce6301574964b443422df1e7860d2283"
+    },
+    {
+      "name": "version-26-button",
+      "exportName": "Version26Button",
+      "entry": "version-26-button/Version26Button.svelte",
+      "payload": "items/version-26-button.json",
+      "sha256": "a0f0033ebb17e28c74583437a308dff7ec30956a3329e00f8605f33559daa3d6"
+    },
+    {
+      "name": "version-26-list",
+      "exportName": "Version26List",
+      "entry": "version-26-list/Version26List.svelte",
+      "payload": "items/version-26-list.json",
+      "sha256": "41a3a6c8e80feb3e837256455d50d0b6e79681df895b09809b151f01f33e5288"
+    },
+    {
+      "name": "version-26-list-button-row",
+      "exportName": "Version26ListButtonRow",
+      "entry": "version-26-list/Version26ListButtonRow.svelte",
+      "payload": "items/version-26-list-button-row.json",
+      "sha256": "f4b81f547d12c5de67e550e045268fb604b20aaa950251f2290c6bcdeb2fcee6"
+    },
+    {
+      "name": "version-26-list-row",
+      "exportName": "Version26ListRow",
+      "entry": "version-26-list/Version26ListRow.svelte",
+      "payload": "items/version-26-list-row.json",
+      "sha256": "21cc619844a820aa549dabaa7b0731d219e5857ac7be3b655f6f43ca795f5bf2"
+    },
+    {
+      "name": "version-26-list-row-button-trailing",
+      "exportName": "Version26ListRowButtonTrailing",
+      "entry": "version-26-list/Version26ListRowButtonTrailing.svelte",
+      "payload": "items/version-26-list-row-button-trailing.json",
+      "sha256": "f39a30e357006750374d23c5b2a6b2efb04472cb9e030469c4e371c2c9c657a5"
+    },
+    {
+      "name": "version-26-list-row-default-trailing",
+      "exportName": "Version26ListRowDefaultTrailing",
+      "entry": "version-26-list/Version26ListRowDefaultTrailing.svelte",
+      "payload": "items/version-26-list-row-default-trailing.json",
+      "sha256": "ca3878b7309c2e5536df613f8fb27f0de56e322d0437bf1cb42b38d611dd4379"
+    },
+    {
+      "name": "version-26-list-row-disclosure-trailing",
+      "exportName": "Version26ListRowDisclosureTrailing",
+      "entry": "version-26-list/Version26ListRowDisclosureTrailing.svelte",
+      "payload": "items/version-26-list-row-disclosure-trailing.json",
+      "sha256": "a4a1d7c6975a3a81a43eef40b8a348b8769f35f22b93ec5cda6d78db286f7aa2"
+    },
+    {
+      "name": "version-26-list-row-image",
+      "exportName": "Version26ListRowImage",
+      "entry": "version-26-list/Version26ListRowImage.svelte",
+      "payload": "items/version-26-list-row-image.json",
+      "sha256": "5952bc3055a3e23385aadc6ccf8da1654a823c1277957f57058f67c6282b597f"
+    },
+    {
+      "name": "version-26-list-row-stepper-trailing",
+      "exportName": "Version26ListRowStepperTrailing",
+      "entry": "version-26-list/Version26ListRowStepperTrailing.svelte",
+      "payload": "items/version-26-list-row-stepper-trailing.json",
+      "sha256": "67fca2283ba0ce5b943c9f0972cdcdbff7d996b81770d24387cae7a3f3dd113c"
+    },
+    {
+      "name": "version-26-list-row-toggle-trailing",
+      "exportName": "Version26ListRowToggleTrailing",
+      "entry": "version-26-list/Version26ListRowToggleTrailing.svelte",
+      "payload": "items/version-26-list-row-toggle-trailing.json",
+      "sha256": "94715307c91085a4a922c62d8c25f360070b6acc3af90934b64e6a35e3f79c73"
+    },
+    {
+      "name": "version-26-list-slider-row",
+      "exportName": "Version26ListSliderRow",
+      "entry": "version-26-list/Version26ListSliderRow.svelte",
+      "payload": "items/version-26-list-slider-row.json",
+      "sha256": "4db04b0663a69a20626dc3e8812b1da4cc998f254a7791642f6dd42bed1a0f5e"
+    },
+    {
+      "name": "version-26-list-text-field-row",
+      "exportName": "Version26ListTextFieldRow",
+      "entry": "version-26-list/Version26ListTextFieldRow.svelte",
+      "payload": "items/version-26-list-text-field-row.json",
+      "sha256": "d7c3416284c587845cd74c45ff0cc861acd626871bf6fe716806af0059ab9d46"
+    },
+    {
+      "name": "version-26-segmented-control",
+      "exportName": "Version26SegmentedControl",
+      "entry": "version-26-segmented-control/Version26SegmentedControl.svelte",
+      "payload": "items/version-26-segmented-control.json",
+      "sha256": "d0f7e3df7249bc83880ba77bf5a07a3bfcad54337f4bc730aa4fb126cb46e588"
+    },
+    {
+      "name": "version-26-segmented-control-button",
+      "exportName": "Version26SegmentedControlButton",
+      "entry": "version-26-segmented-control/Version26SegmentedControlButton.svelte",
+      "payload": "items/version-26-segmented-control-button.json",
+      "sha256": "8b4eac196eebb2fca5c8fcca581bb2d0210b2ae2a5948f5cacf97cb98165c20e"
+    },
+    {
+      "name": "version-26-sidebar",
+      "exportName": "Version26Sidebar",
+      "entry": "version-26-sidebar/Version26Sidebar.svelte",
+      "payload": "items/version-26-sidebar.json",
+      "sha256": "6ccf47ddebecc0cf44cf0da885771db11335c0b822d097eeaa60e65c72e3b052"
+    },
+    {
+      "name": "version-26-sidebar-navigation-bar",
+      "exportName": "Version26SidebarNavigationBar",
+      "entry": "version-26-sidebar/Version26SidebarNavigationBar.svelte",
+      "payload": "items/version-26-sidebar-navigation-bar.json",
+      "sha256": "aa0666559b72996ebe1219dbc0a2befb24b545d0587ea9269f007c8fc30c7bd7"
+    },
+    {
+      "name": "version-26-sidebar-navigation-bar-leading",
+      "exportName": "Version26SidebarNavigationBarLeading",
+      "entry": "version-26-sidebar/Version26SidebarNavigationBarLeading.svelte",
+      "payload": "items/version-26-sidebar-navigation-bar-leading.json",
+      "sha256": "556f2a72cb424c446a10f5b95d948fd856ce2dee6379418e8cd24f672ea930df"
+    },
+    {
+      "name": "version-26-sidebar-navigation-bar-trailing",
+      "exportName": "Version26SidebarNavigationBarTrailing",
+      "entry": "version-26-sidebar/Version26SidebarNavigationBarTrailing.svelte",
+      "payload": "items/version-26-sidebar-navigation-bar-trailing.json",
+      "sha256": "e0f2295808d6e5dcb800b17a6df808060f38e91c9968699946bb4d1818b4c06b"
+    },
+    {
+      "name": "version-26-sidebar-section",
+      "exportName": "Version26SidebarSection",
+      "entry": "version-26-sidebar/Version26SidebarSection.svelte",
+      "payload": "items/version-26-sidebar-section.json",
+      "sha256": "b44a683d709ec01aa91ac9727b882f626f22d3b92c6870fe238966f1cccbbb9d"
+    },
+    {
+      "name": "version-26-sidebar-section-add-item-button",
+      "exportName": "Version26SidebarSectionAddItemButton",
+      "entry": "version-26-sidebar/Version26SidebarSectionAddItemButton.svelte",
+      "payload": "items/version-26-sidebar-section-add-item-button.json",
+      "sha256": "356a2695e598390c6a068e305cc31b8b486879f2b90ea408913d80aedabcdb61"
+    },
+    {
+      "name": "version-26-sidebar-section-item",
+      "exportName": "Version26SidebarSectionItem",
+      "entry": "version-26-sidebar/Version26SidebarSectionItem.svelte",
+      "payload": "items/version-26-sidebar-section-item.json",
+      "sha256": "cc3176f603f987a8474a8a7c2ea14c3c04bf7dd32e795ce7bdcc6f90e7073c19"
+    },
+    {
+      "name": "version-26-tab-bar",
+      "exportName": "Version26TabBar",
+      "entry": "version-26-tab-bar/Version26TabBar.svelte",
+      "payload": "items/version-26-tab-bar.json",
+      "sha256": "8d0ef86bb3dcb59ffdaf104270432bd3a35dddecbac7515e9b8095d958f46f97"
+    },
+    {
+      "name": "version-26-tab-bar-button",
+      "exportName": "Version26TabBarButton",
+      "entry": "version-26-tab-bar/Version26TabBarButton.svelte",
+      "payload": "items/version-26-tab-bar-button.json",
+      "sha256": "ba0447eae8974fd8c5c96a23c6398bdab88aba24fbce284499312f5c25121f7c"
+    },
+    {
+      "name": "version-26-toolbar",
+      "exportName": "Version26Toolbar",
+      "entry": "version-26-toolbar/Version26Toolbar.svelte",
+      "payload": "items/version-26-toolbar.json",
+      "sha256": "b4f770eb3fcaaa844a0302a3916f96183d2563cc8d73a920cd260507823a1b4e"
+    },
+    {
+      "name": "version-26-toolbar-button",
+      "exportName": "Version26ToolbarButton",
+      "entry": "version-26-toolbar/Version26ToolbarButton.svelte",
+      "payload": "items/version-26-toolbar-button.json",
+      "sha256": "425b30e9741dcaa14c9995d9d2a52a462bffb2a6dc9b04128fa5db7cb1531d14"
+    },
+    {
+      "name": "window",
+      "exportName": "Window",
+      "entry": "window/Window.svelte",
+      "payload": "items/window.json",
+      "sha256": "350b38387ffcc6b8f2cc2f6598bb42d54386d7ee8df2183acbda494c2fea2286"
+    },
+    {
+      "name": "window-choice",
+      "exportName": "WindowChoice",
+      "entry": "window-choice/WindowChoice.svelte",
+      "payload": "items/window-choice.json",
+      "sha256": "b969b19a5cfb0f4c3096ed53e54af00cd31e41ce6624dda87aa830389865daf4"
+    },
+    {
+      "name": "window-controls",
+      "exportName": "WindowControls",
+      "entry": "window/WindowControls.svelte",
+      "payload": "items/window-controls.json",
+      "sha256": "39a8669081b0f6a42d348fe21ee38f5b27cc6de58f6eb2b0787ca0e36e0626b3"
+    },
+    {
+      "name": "window-resize-control",
+      "exportName": "WindowResizeControl",
+      "entry": "window/WindowResizeControl.svelte",
+      "payload": "items/window-resize-control.json",
+      "sha256": "3c1085a13c0f2e70d4d9bec0bfb627282b82c13f73b5fd10a57a2c5ebe47c6cd"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "component",
+  "name": "version-26-tab-bar",
+  "version": "0.1.0",
+  "exportName": "Version26TabBar",
+  "entry": "version-26-tab-bar/Version26TabBar.svelte",
+  "requirements": {
+    "svelte": ">=5.20.0",
+    "materialSymbols": false,
+    "svgFilter": true
+  },
+  "files": [
+    {
+      "path": "version-26-tab-bar/Version26TabBar.svelte",
+      "kind": "component",
+      "sha256": "727ae0b22d0399f3cb9179de15493996dcca4fa604368d56b3c4afbc5d6abc47",
+      "content": "<script>\n\texport let id = undefined;\n\texport let style = undefined;\n</script>\n\n<div class=\"liquid-glass liquid-glass-medium\" {id} {style}>\n\t<slot />\n</div>\n\n<style>\n\tdiv {\n\t\tborder-radius: 66px;\n\t\tbottom: 0px;\n\t\tdisplay: flex;\n\t\tjustify-content: space-between;\n\t\tmargin: 16px 28px 32px;\n\t\tpadding: 4px;\n\t\tposition: fixed;\n\t\twidth: calc(100vw - 96px);\n\t}\n\n\tdiv::before {\n\t\tborder-radius: 66px;\n\t}\n\n\tdiv::after {\n\t\tborder-radius: 66px;\n\t}\n</style>\n"
+    }
+  ]
+}

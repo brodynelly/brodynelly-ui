@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "component",
+  "name": "navigation-bar-search-field",
+  "version": "0.1.0",
+  "exportName": "NavigationBarSearchField",
+  "entry": "navigation-bar/NavigationBarSearchField.svelte",
+  "requirements": {
+    "svelte": ">=5.20.0",
+    "materialSymbols": true,
+    "svgFilter": false
+  },
+  "files": [
+    {
+      "path": "navigation-bar/NavigationBarSearchField.svelte",
+      "kind": "component",
+      "sha256": "2db91e71e4694f778778acc244ce5b1fe45d793d8e8748bef508b4ad6906be5f",
+      "content": "<script>\n\texport let value = undefined;\n\texport let searchSymbol = 'search';\n\texport let showPlaceholder = false;\n\texport let placeholder = 'Search';\n\texport let dictationSymbol = 'mic';\n\texport let cancelSymbol = 'cancel';\n\texport let cancelLabel = 'Cancel';\n\n\texport let id = undefined;\n\texport let style = undefined;\n\n\tlet inputElement = undefined;\n\n\tfunction handleCancelPress() {\n\t\tvalue = undefined;\n\t\tinputElement.blur();\n\t}\n</script>\n\n<div class=\"search-field\" {style}>\n\t<label>\n\t\t<p class=\"symbol primary\">{searchSymbol}</p>\n\t\t{#if showPlaceholder}\n\t\t\t<input bind:value class=\"body\" {id} type=\"text\" />\n\t\t{:else}\n\t\t\t<input bind:value class=\"body\" {id} {placeholder} type=\"text\" />\n\t\t{/if}\n\t\t<p class=\"symbol secondary\">{dictationSymbol}</p>\n\t\t<button class=\"symbol secondary\" on:click={handleCancelPress}>{cancelSymbol}</button>\n\t</label>\n\t<button bind:this={inputElement} class=\"label\" on:click={handleCancelPress}>{cancelLabel}</button>\n</div>\n\n<style>\n\t.search-field {\n\t\talign-items: center;\n\t\tdisplay: flex;\n\t\tgap: 16px;\n\t\tmargin: 1px 16px 15px;\n\t}\n\n\tlabel {\n\t\talign-items: center;\n\t\tbackground: var(--fills-tertiary);\n\t\tborder-radius: 10px;\n\t\tdisplay: flex;\n\t\tflex: 1;\n\t\tpadding: 7px 8px;\n\t}\n\n\t.primary {\n\t\tcolor: var(--labels-secondary);\n\t\tfont-size: calc(17px * var(--medium-symbol-font-size-multiplier));\n\t\tfont-weight: calc(400 / var(--medium-symbol-font-size-multiplier));\n\t\tline-height: 22px;\n\t\twidth: 25px;\n\t}\n\n\tinput {\n\t\tdisplay: flex;\n\t\twidth: 100%;\n\t}\n\n\tinput::placeholder {\n\t\tcolor: var(--labels-secondary);\n\t}\n\n\t.secondary {\n\t\tcolor: var(--labels-secondary);\n\t\tfont-size: 17px;\n\t\tfont-weight: 400;\n\t\tline-height: 22px;\n\t}\n\n\t.label {\n\t\tcolor: var(--colors-accent);\n\t\tfont-size: 17px;\n\t\tfont-weight: 400;\n\t\tline-height: 22px;\n\t\ttransition: width 0.1s;\n\t}\n\n\tinput:focus + .secondary {\n\t\tdisplay: none;\n\t}\n\n\tinput:not(:focus) + .secondary + .secondary {\n\t\tdisplay: none;\n\t}\n\n\tlabel:has(input:not(:focus)) + .label {\n\t\tdisplay: none;\n\t}\n\n\tbutton:active {\n\t\topacity: var(--symbol-press-opacity) !important;\n\t\toutline: unset !important;\n\t}\n\n\tbutton:focus {\n\t\tborder-radius: 5px;\n\t\toutline: 2px solid var(--colors-accent);\n\t\toutline-offset: 4px;\n\t}\n\n\t.symbol:hover {\n\t\topacity: var(--hover-opacity);\n\t}\n</style>\n"
+    }
+  ]
+}

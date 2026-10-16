@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "component",
+  "name": "regular-progress-indicator",
+  "version": "0.1.0",
+  "exportName": "RegularProgressIndicator",
+  "entry": "progress-indicator/RegularProgressIndicator.svelte",
+  "requirements": {
+    "svelte": ">=5.20.0",
+    "materialSymbols": false,
+    "svgFilter": false
+  },
+  "files": [
+    {
+      "path": "progress-indicator/RegularProgressIndicator.svelte",
+      "kind": "component",
+      "sha256": "b1117ded954803ff50131e5a67c47217b10e4f620e0be4729e769fa6eb62f152",
+      "content": "<script>\n\texport let state = 'default';\n\t/* export let state = 'hidden'; */\n\texport let showLabel = false;\n\texport let label = 'Status…';\n\n\texport let id = undefined;\n\texport let style = undefined;\n\n\tlet opacityStyle = ['15%', '27%', '39%', '51%', '63%', '75%', '87%', '100%'];\n\n\tlet displayStyle = 'flex';\n\n\t$: {\n\t\tif (state === 'default') {\n\t\t\tdisplayStyle = 'flex';\n\t\t} else {\n\t\t\tdisplayStyle = 'none';\n\t\t}\n\t}\n</script>\n\n<div class=\"progress-indicator\" {id} style=\"{style}; display: {displayStyle}\">\n\t<div class=\"spinner\">\n\t\t<div class=\"container\">\n\t\t\t<div class=\"vertical\">\n\t\t\t\t<div class=\"rect-vertical\" style=\"opacity: {opacityStyle[0]}\"></div>\n\t\t\t\t<div class=\"rect-vertical\" style=\"opacity: {opacityStyle[4]}\"></div>\n\t\t\t</div>\n\t\t\t<div class=\"horizontal\">\n\t\t\t\t<div class=\"rect-horizontal\" style=\"opacity: {opacityStyle[6]}\"></div>\n\t\t\t\t<div class=\"rect-horizontal\" style=\"opacity: {opacityStyle[2]}\"></div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"container rotated\">\n\t\t\t<div class=\"vertical\">\n\t\t\t\t<div class=\"rect-vertical\" style=\"opacity: {opacityStyle[1]}\"></div>\n\t\t\t\t<div class=\"rect-vertical\" style=\"opacity: {opacityStyle[5]}\"></div>\n\t\t\t</div>\n\t\t\t<div class=\"horizontal\">\n\t\t\t\t<div class=\"rect-horizontal\" style=\"opacity: {opacityStyle[7]}\"></div>\n\t\t\t\t<div class=\"rect-horizontal\" style=\"opacity: {opacityStyle[3]}\"></div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t{#if showLabel}\n\t\t<p class=\"body\">{label}</p>\n\t{/if}\n</div>\n\n<style>\n\t.progress-indicator {\n\t\talign-items: center;\n\t\tdisplay: flex;\n\t\tgap: 8px;\n\t\theight: 30px;\n\t\tpadding-left: 30px;\n\t\tposition: relative;\n\t}\n\n\tp {\n\t\tcolor: var(--labels-secondary);\n\t}\n\n\t.container {\n\t\talign-items: center;\n\t\tanimation: 1s rotate infinite steps(1, end);\n\t\tdisplay: flex;\n\t\theight: 30px;\n\t\tjustify-content: center;\n\t\tleft: 0px;\n\t\tposition: absolute;\n\t\ttop: 0px;\n\t\twidth: 30px;\n\t}\n\n\t.vertical {\n\t\tdisplay: flex;\n\t\tflex-direction: column;\n\t\theight: 30px;\n\t\tjustify-content: space-between;\n\t}\n\n\t.horizontal {\n\t\tdisplay: flex;\n\t\tjustify-content: space-between;\n\t\tposition: absolute;\n\t\twidth: 30px;\n\t}\n\n\t.rect-vertical {\n\t\tbackground: var(--labels-secondary);\n\t\tborder-radius: 2px;\n\t\theight: 10px;\n\t\twidth: 4px;\n\t}\n\n\t.rect-horizontal {\n\t\tbackground: var(--labels-secondary);\n\t\tborder-radius: 2px;\n\t\theight: 4px;\n\t\twidth: 10px;\n\t}\n\n\t.rotated {\n\t\trotate: 45deg;\n\t}\n\n\t@keyframes rotate {\n\t\t0% {\n\t\t\ttransform: rotate(45deg);\n\t\t}\n\n\t\t12.5% {\n\t\t\ttransform: rotate(90deg);\n\t\t}\n\n\t\t25% {\n\t\t\ttransform: rotate(135deg);\n\t\t}\n\n\t\t37.5% {\n\t\t\ttransform: rotate(180deg);\n\t\t}\n\n\t\t50% {\n\t\t\ttransform: rotate(225deg);\n\t\t}\n\n\t\t62.5% {\n\t\t\ttransform: rotate(270deg);\n\t\t}\n\n\t\t75% {\n\t\t\ttransform: rotate(315deg);\n\t\t}\n\n\t\t87.5% {\n\t\t\ttransform: rotate(360deg);\n\t\t}\n\n\t\t100% {\n\t\t\ttransform: rotate(0deg);\n\t\t}\n\t}\n</style>\n"
+    }
+  ]
+}

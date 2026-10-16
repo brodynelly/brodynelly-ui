@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "component",
+  "name": "list-row-default-trailing",
+  "version": "0.1.0",
+  "exportName": "ListRowDefaultTrailing",
+  "entry": "list/ListRowDefaultTrailing.svelte",
+  "requirements": {
+    "svelte": ">=5.20.0",
+    "materialSymbols": true,
+    "svgFilter": false
+  },
+  "files": [
+    {
+      "path": "list/ListRowDefaultTrailing.svelte",
+      "kind": "component",
+      "sha256": "69b1a7fa4cb3c317d100bd7b4f313a26d19fe96584233f5fb0f18f9fcb0c945e",
+      "content": "<script>\n\texport let showDetail = false;\n\texport let detail = 'Detail';\n\texport let showSymbol = false;\n\texport let symbol = 'star';\n\texport let showInfo = false;\n\texport let info = 'info';\n\texport let showCheckmark = false;\n\texport let checkmark = 'done';\n\texport let showDisclosure = false;\n\texport let disclosure = 'arrow_forward_ios';\n\n\texport let id = undefined;\n\texport let onDetailPress = undefined;\n\texport let onSymbolPress = undefined;\n\texport let onInfoPress = undefined;\n\texport let onCheckmarkPress = undefined;\n\texport let onDisclosurePress = undefined;\n\texport let style = undefined;\n\n\tlet detailInputElement = undefined;\n\n\tfunction handleDetailPress() {\n\t\tif (onDetailPress) {\n\t\t\tonDetailPress();\n\t\t}\n\t\tdetailInputElement.blur();\n\t}\n\n\tlet symbolInputElement = undefined;\n\n\tfunction handleSymbolPress() {\n\t\tif (onSymbolPress) {\n\t\t\tonSymbolPress();\n\t\t}\n\t\tsymbolInputElement.blur();\n\t}\n\n\tlet infoInputElement = undefined;\n\n\tfunction handleInfoPress() {\n\t\tif (onInfoPress) {\n\t\t\tonInfoPress();\n\t\t}\n\t\tinfoInputElement.blur();\n\t}\n\n\tlet checkmarkInputElement = undefined;\n\n\tfunction handleCheckmarkPress() {\n\t\tif (onCheckmarkPress) {\n\t\t\tonCheckmarkPress();\n\t\t}\n\t\tcheckmarkInputElement.blur();\n\t}\n\n\tlet disclosureInputElement = undefined;\n\n\tfunction handleDisclosurePress() {\n\t\tif (onDisclosurePress) {\n\t\t\tonDisclosurePress();\n\t\t}\n\t\tdisclosureInputElement.blur();\n\t}\n</script>\n\n<div {id} {style}>\n\t{#if showDetail}\n\t\t<button bind:this={detailInputElement} class=\"body\" {id} on:click={handleDetailPress}\n\t\t\t>{detail}</button\n\t\t>\n\t{/if}\n\t{#if showSymbol}\n\t\t<button bind:this={symbolInputElement} class=\"symbol primary\" {id} on:click={handleSymbolPress}\n\t\t\t>{symbol}</button\n\t\t>\n\t{/if}\n\t{#if showInfo}\n\t\t<button bind:this={infoInputElement} class=\"symbol primary\" {id} on:click={handleInfoPress}\n\t\t\t>{info}</button\n\t\t>\n\t{/if}\n\t{#if showCheckmark}\n\t\t<button\n\t\t\tbind:this={checkmarkInputElement}\n\t\t\tclass=\"symbol secondary\"\n\t\t\t{id}\n\t\t\ton:click={handleCheckmarkPress}>{checkmark}</button\n\t\t>\n\t{/if}\n\t{#if showDisclosure}\n\t\t<button\n\t\t\tbind:this={disclosureInputElement}\n\t\t\tclass=\"symbol tertiary\"\n\t\t\t{id}\n\t\t\ton:click={handleDisclosurePress}>{disclosure}</button\n\t\t>\n\t{/if}\n</div>\n\n<style>\n\tdiv {\n\t\talign-items: center;\n\t\tdisplay: flex;\n\t\tgap: 16px;\n\t}\n\n\tbutton:active {\n\t\topacity: unset !important;\n\t\toutline: unset !important;\n\t}\n\n\tbutton:focus {\n\t\tborder-radius: 5px;\n\t\toutline: 2px solid var(--colors-accent);\n\t\toutline-offset: 4px;\n\t}\n\n\tbutton:hover {\n\t\topacity: var(--hover-opacity);\n\t}\n\n\t.body {\n\t\tcolor: var(--labels-secondary);\n\t}\n\n\t.primary {\n\t\talign-items: center;\n\t\tcolor: var(--colors-accent);\n\t\tdisplay: flex;\n\t\tfont-feature-settings: 'ss16' on;\n\t\tfont-size: calc(17px * var(--large-symbol-font-size-multiplier));\n\t\tfont-weight: calc(400 / var(--large-symbol-font-size-multiplier));\n\t\theight: 22px;\n\t\tjustify-content: center;\n\t\tline-height: 22px;\n\t\twidth: 18px;\n\t}\n\n\t.secondary {\n\t\talign-items: center;\n\t\tcolor: var(--colors-accent);\n\t\tdisplay: flex;\n\t\tfont-size: calc(17px * var(--medium-symbol-font-size-multiplier));\n\t\tfont-weight: calc(590 / var(--medium-symbol-font-size-multiplier));\n\t\theight: 22px;\n\t\tjustify-content: center;\n\t\tline-height: 22px;\n\t\twidth: 18px;\n\t}\n\n\t.tertiary {\n\t\tcolor: var(--labels-tertiary);\n\t\tfont-feature-settings: 'ss15' on;\n\t\tfont-size: calc(17px * var(--small-symbol-font-size-multiplier));\n\t\tfont-weight: calc(590 / var(--small-symbol-font-size-multiplier));\n\t\tline-height: 22px;\n\t}\n</style>\n"
+    }
+  ]
+}

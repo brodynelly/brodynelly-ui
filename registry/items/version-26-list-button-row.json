@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "component",
+  "name": "version-26-list-button-row",
+  "version": "0.1.0",
+  "exportName": "Version26ListButtonRow",
+  "entry": "version-26-list/Version26ListButtonRow.svelte",
+  "requirements": {
+    "svelte": ">=5.20.0",
+    "materialSymbols": false,
+    "svgFilter": false
+  },
+  "files": [
+    {
+      "path": "version-26-list/Version26ListButtonRow.svelte",
+      "kind": "component",
+      "sha256": "ebe0e1674cad942ef24cdae8051a6ab5a28016cfb8faedcb9177c30fe21ce19b",
+      "content": "<script>\n\texport let type = 'enabled';\n\t/* export let type = \"destructive\"; */\n\t/* export let type = \"disabled\"; */\n\texport let label = 'Title';\n\n\texport let id = undefined;\n\texport let onPress = undefined;\n\texport let style = undefined;\n\n\texport let colorStyle = 'unset';\n\tif (type === 'enabled') {\n\t\tcolorStyle = 'var(--colors-accent)';\n\t} else if (type === 'destructive') {\n\t\tcolorStyle = 'var(--colors-red)';\n\t} else {\n\t\tcolorStyle = 'var(--grays-gray-2)';\n\t}\n\n\tif (type === 'disabled') {\n\t\tonPress = undefined;\n\t}\n\n\tlet inputElement = undefined;\n\n\tfunction handlePress() {\n\t\tif (onPress) {\n\t\t\tonPress();\n\t\t}\n\t\tinputElement.blur();\n\t}\n</script>\n\n<label {id} {style}>\n\t<button bind:this={inputElement} class=\"body\" on:click={handlePress} style=\"color: {colorStyle}\"\n\t\t>{label}</button\n\t>\n</label>\n\n<style>\n\tlabel {\n\t\talign-items: center;\n\t\tbackground: var(--bg-grouped-secondary);\n\t\tdisplay: flex;\n\t\theight: 52px;\n\t\tpadding-left: 16px;\n\t}\n\n\tbutton {\n\t\talign-items: center;\n\t\tbox-shadow: 0px 0.5px var(--separators-non-opaque);\n\t\tdisplay: flex;\n\t\tflex: 1;\n\t\theight: 100%;\n\t\tjustify-content: center;\n\t\tpadding-right: 16px;\n\t}\n\n\tlabel:last-child > button {\n\t\tbox-shadow: unset;\n\t}\n\n\tlabel:active {\n\t\tbackground:\n\t\t\tlinear-gradient(var(--press-overlay) 0%, var(--press-overlay)), var(--bg-grouped-secondary) !important;\n\t\topacity: unset !important;\n\t}\n\n\tbutton:active {\n\t\topacity: unset;\n\t\toutline: unset !important;\n\t}\n\n\tbutton:focus {\n\t\tborder-radius: 10px;\n\t\toutline: 2px solid var(--colors-accent);\n\t\toutline-offset: -2px;\n\t}\n\n\tbutton:hover {\n\t\topacity: var(--hover-opacity);\n\t}\n</style>\n"
+    }
+  ]
+}

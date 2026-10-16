@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "component",
+  "name": "action-sheet",
+  "version": "0.1.0",
+  "exportName": "ActionSheet",
+  "entry": "action-sheet/ActionSheet.svelte",
+  "requirements": {
+    "svelte": ">=5.20.0",
+    "materialSymbols": false,
+    "svgFilter": false
+  },
+  "files": [
+    {
+      "path": "action-sheet/ActionSheet.svelte",
+      "kind": "component",
+      "sha256": "7f7176b872b80995721c0013811aab11a6535da0cc7ec1f3b5038a373482ba8e",
+      "content": "<script>\n\texport let state = 'default';\n\t/* export let state = 'hidden'; */\n\texport let showHeader = false;\n\texport let headerTitle = 'Header Title';\n\texport let showDescription = false;\n\texport let headerDescription = 'A message should be a short, complete sentence.';\n\texport let showCancelButton = false;\n\texport let cancelButtonLabel = 'Cancel';\n\n\texport let id = undefined;\n\texport let style = undefined;\n\n\tlet windowHeight = undefined;\n\tlet windowWidth = undefined;\n\tlet heightStyle = '100vh';\n\tlet widthStyle = '100vh';\n\n\t$: {\n\t\theightStyle = `${windowHeight}px`;\n\t\twidthStyle = `${windowWidth}px`;\n\t}\n\n\tlet displayStyle = 'flex';\n\n\t$: {\n\t\tif (state === 'default') {\n\t\t\tdisplayStyle = 'flex';\n\t\t} else {\n\t\t\tdisplayStyle = 'none';\n\t\t}\n\t}\n\n\tlet inputElement = undefined;\n\n\tfunction handlePress() {\n\t\tstate = 'hidden';\n\t\tinputElement.blur();\n\t}\n</script>\n\n<svelte:window\n\tbind:innerHeight={windowHeight}\n\tbind:innerWidth={windowWidth}\n\ton:keydown={(e) => {\n\t\tif (e.key === 'Escape') state = 'hidden';\n\t}}\n/>\n\n<label style=\"display: {displayStyle}; height: {heightStyle}; width: {widthStyle}\">\n\t<button\n\t\taria-label=\"Close action sheet\"\n\t\tbind:this={inputElement}\n\t\tclass=\"hidden-input\"\n\t\ton:click={handlePress}\n\t></button>\n\t<div class=\"action-sheet\" {id} {style}>\n\t\t<div class=\"buttons\">\n\t\t\t{#if showHeader}\n\t\t\t\t<div class=\"header\">\n\t\t\t\t\t<p class=\"footnote-emphasized\">{headerTitle}</p>\n\t\t\t\t\t{#if showDescription}\n\t\t\t\t\t\t<p class=\"footnote\">{headerDescription}</p>\n\t\t\t\t\t{/if}\n\t\t\t\t</div>\n\t\t\t{/if}\n\t\t\t<slot />\n\t\t</div>\n\t\t{#if showCancelButton}\n\t\t\t<button class=\"cancel\" on:click={handlePress}>\n\t\t\t\t<p class=\"body-emphasized\">{cancelButtonLabel}</p>\n\t\t\t</button>\n\t\t{/if}\n\t</div>\n</label>\n\n<style>\n\t:root {\n\t\tcolor-scheme: light dark;\n\t\t--action-sheet-background: rgb(0, 0, 0, 0.4);\n\t}\n\n\t@media (prefers-color-scheme: dark) {\n\t\t:root {\n\t\t\t--action-sheet-background: rgb(0, 0, 0, 0.6);\n\t\t}\n\t}\n\n\tlabel {\n\t\talign-items: end;\n\t\tbackground: var(--action-sheet-background);\n\t\tcursor: unset;\n\t\tdisplay: flex;\n\t\theight: 100vh;\n\t\tjustify-content: center;\n\t\tleft: 0px;\n\t\tposition: fixed;\n\t\ttop: 0px;\n\t\twidth: 100vw;\n\t\tz-index: 3;\n\t}\n\n\t.action-sheet {\n\t\tdisplay: flex;\n\t\tflex: 1;\n\t\tflex-direction: column;\n\t\tgap: 8px;\n\t\tmargin: 34px 8px;\n\t\tmax-width: 377px;\n\t}\n\n\t.buttons {\n\t\tborder-radius: 14px;\n\t\toverflow: hidden;\n\t}\n\n\t.header {\n\t\talign-items: center;\n\t\tbackdrop-filter: blur(40px);\n\t\tbackground: var(--materials-regular);\n\t\tdisplay: flex;\n\t\tflex-direction: column;\n\t\tgap: 4px;\n\t\tpadding: 12px 16px 12.5px;\n\t\t-webkit-backdrop-filter: blur(40px);\n\t}\n\n\t.footnote-emphasized {\n\t\tcolor: var(--labels-secondary);\n\t}\n\n\t.footnote {\n\t\tcolor: var(--labels-secondary);\n\t}\n\n\t.cancel {\n\t\talign-items: center;\n\t\tborder-radius: 14px;\n\t\tbackdrop-filter: blur(40px);\n\t\tbackground: var(--materials-regular);\n\t\tdisplay: flex;\n\t\theight: 56px;\n\t\tjustify-content: center;\n\t\t-webkit-backdrop-filter: blur(40px);\n\t}\n\n\t.body-emphasized {\n\t\tcolor: var(--colors-accent);\n\t\twidth: 56px;\n\t}\n\n\tbutton:active {\n\t\tbackground:\n\t\t\tlinear-gradient(var(--press-overlay) 0%, var(--press-overlay)), var(--materials-regular);\n\t\tborder: unset !important;\n\t\topacity: unset !important;\n\t}\n\n\tbutton:focus {\n\t\tborder: 2px solid var(--colors-accent);\n\t}\n\n\tbutton:hover {\n\t\topacity: var(--hover-opacity);\n\t}\n</style>\n"
+    }
+  ]
+}
