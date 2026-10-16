@@ -9,7 +9,7 @@ import {
 	readdirSync,
 	writeFileSync
 } from 'node:fs';
-import { devNull, tmpdir } from 'node:os';
+import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -80,6 +80,19 @@ export function localGitSpec(repository, head) {
 	return `git+${pathToFileURL(repository).href.replaceAll('%20', ' ')}#${head}`;
 }
 
+export function isolatedGitEnvironment(emptyConfigFile, environment = process.env) {
+	return {
+		...environment,
+		GIT_CONFIG_NOSYSTEM: '1',
+		GIT_CONFIG_SYSTEM: emptyConfigFile,
+		GIT_CONFIG_GLOBAL: emptyConfigFile,
+		GIT_CONFIG_COUNT: '0',
+		GIT_CONFIG_PARAMETERS: '',
+		GIT_ALLOW_PROTOCOL: 'file',
+		GIT_TERMINAL_PROMPT: '0'
+	};
+}
+
 function files(directory, prefix = '') {
 	return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
 		const relative = `${prefix}${entry.name}`;
@@ -145,21 +158,17 @@ export function verifyGitPackage() {
 		const cache = join(temporary, 'fresh npm cache');
 		mkdirSync(consumer);
 		report.temporary = temporary; // Preserved: only the caller may remove this owned fixture.
+		// Git for Windows cannot open Node's Win32 null-device path as a config.
+		const emptyGitConfig = join(temporary, 'empty git config');
+		writeFileSync(emptyGitConfig, '', { flag: 'wx' });
 		environment = {
-			...environment,
+			...isolatedGitEnvironment(emptyGitConfig, environment),
 			npm_config_ignore_scripts: 'false',
 			npm_config_audit: 'false',
 			npm_config_fund: 'false',
 			npm_config_update_notifier: 'false',
 			npm_config_registry: 'http://127.0.0.1:9',
-			npm_config_git: 'git',
-			GIT_CONFIG_NOSYSTEM: '1',
-			GIT_CONFIG_SYSTEM: devNull,
-			GIT_CONFIG_GLOBAL: devNull,
-			GIT_CONFIG_COUNT: '0',
-			GIT_CONFIG_PARAMETERS: '',
-			GIT_ALLOW_PROTOCOL: 'file',
-			GIT_TERMINAL_PROMPT: '0'
+			npm_config_git: 'git'
 		};
 		const npm = (args, cwd = consumer) => {
 			const command = npmInvocation(args);
