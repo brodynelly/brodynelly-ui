@@ -143,12 +143,17 @@ describe('SplitView standalone native pointer regressions', () => {
 			type: 'touchMove',
 			touchPoints: [primary, secondary]
 		});
-		expect(await ratio()).toBeCloseTo(4 / 9 + 0.1, 8);
-		expect(
-			await page.evaluate(() =>
-				window.pointerEvents.some((event) => event.type === 'pointermove' && !event.primary)
+		// Observe native delivery before asserting the secondary move left the ratio unchanged.
+		await expect
+			.poll(() =>
+				page.evaluate(() =>
+					window.pointerEvents.some(
+						(event) => event.type === 'pointermove' && !event.primary && event.trusted
+					)
+				)
 			)
-		).toBe(true);
+			.toBe(true);
+		expect(await ratio()).toBeCloseTo(4 / 9 + 0.1, 8);
 		await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
 		await expect.poll(ratio).toBeCloseTo(4 / 9, 8);
 		expect(await dragging()).toBe('false');
